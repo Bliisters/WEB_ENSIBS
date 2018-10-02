@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<title>Blog</title>
 	<meta charset="UTF-8">
@@ -86,7 +86,7 @@
 									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
 								</p>
 
-								<a href="blog-detail.html" class="s-text20">
+								<a href="blog-detail.php" class="s-text20">
 									Continue Reading
 									<i class="fa fa-long-arrow-right m-l-8" aria-hidden="true"></i>
 								</a>
