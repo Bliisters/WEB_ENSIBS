@@ -72,18 +72,20 @@
 								</h4>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Full Name*">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Full Name*" value="'.$_POST['name'].'">
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Phone Number*">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Phone Number*" value="'.$_POST['phone-number'].'">
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Email Address*">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Email Address*" value="'.$_POST['email'].'">
 								</div>
 
-								<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message"></textarea>
+								<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message">
+'.$_POST['message'].'
+								</textarea>
 
 								<h4 style="color:red" class="m-text15 p-b-36 p-t-15">
 									Informations incomplètes
