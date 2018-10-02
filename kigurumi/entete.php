@@ -81,24 +81,35 @@
           <!-- Header cart noti -->
           <div class="header-cart header-dropdown">
             <ul class="header-cart-wrapitem">
-              <li class="header-cart-item">
-                <div class="header-cart-item-img">
-                  <img src="images/item-cart-01.jpg" alt="IMG">
-                </div>
+              <?php
+              if(isset($_SESSION['cart'])) {
+                $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', 'pass');
+                $cart = $_SESSION['cart'];
+                $req = $bdd->prepare('SELECT * FROM table WHERE nom = ?');
+                foreach ($cart as $item) {
+                  $req->execute(array($item['nom']));
+                  $donnees = $reponse->fetch();                         /*Verifier les attributs bdd*/
+                  echo '<li class="header-cart-item">
+                    <div class="header-cart-item-img">
+                      <img src="images/'.$donnees['img'].'.jpg" alt="IMG">
+                    </div>
 
-                <div class="header-cart-item-txt">
-                  <a href="#" class="header-cart-item-name">
-                    White Shirt With Pleat Detail Back
-                  </a>
+                    <div class="header-cart-item-txt">
+                      <a href="#" class="header-cart-item-name">
+                        '.$donnees['nom'].'
+                      </a>
 
-                  <span class="header-cart-item-info">
-                    1 x $19.00
-                  </span>
-                </div>
-              </li>
+                      <span class="header-cart-item-info">
+                        '.$item['quantite'].' x '.$donnees['prix'].'
+                      </span>
+                    </div>
+                  </li>';
+                }
+              }
+            ?>
 
             <div class="header-cart-total">
-              Total: $75.00
+              Total: <?php echo (isset($_SESSION['cart_total'])) ? $_SESSION['cart_total'] : '0.00' ; ?>€
             </div>
 
             <div class="header-cart-buttons">
