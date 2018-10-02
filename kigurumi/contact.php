@@ -56,11 +56,54 @@
 				<div class="col-md-6 p-b-30">
 
 						<?php
-						if(isset($_GET['name']) AND isset($_GET['phone-number']) AND isset($_GET['email']))
-						{
+						if(isset($_POST['name']) AND isset($_POST['phone-number']) AND isset($_POST['email'])){
+							if($_POST['name']!=null AND $_POST['phone-number']!=null AND $_POST['email']!=null)
+							{
 
-							echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
+								echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
 
+							}
+							else{
+
+								echo '
+								<form class="leave-comment" action="contact.php" method="post">
+								<h4 class="m-text26 p-b-36 p-t-15">
+									Send us your message
+								</h4>
+
+								<div class="bo4 of-hidden size15 m-b-20">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Full Name*">
+								</div>
+
+								<div class="bo4 of-hidden size15 m-b-20">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Phone Number*">
+								</div>
+
+								<div class="bo4 of-hidden size15 m-b-20">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Email Address*">
+								</div>
+
+								<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message"></textarea>
+
+								<h4 style="color:red" class="m-text15 p-b-36 p-t-15">
+									Informations incomplètes
+								</h4>
+
+								<div class="w-size25">
+									<!-- Button -->
+
+									<button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" type="submit">
+										Send
+									</button>
+								</div>
+
+								<a class="s-text7">
+									Les informations (*) sont obligatoires
+								</a>
+
+								</form>';
+
+							}
 						}
 						else{
 
@@ -91,6 +134,11 @@
 									Send
 								</button>
 							</div>
+
+							<a class="s-text7">
+								Les informations (*) sont obligatoires
+							</a>
+
 							</form>';
 
 						}
