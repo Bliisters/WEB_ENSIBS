@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<title>Contact</title>
+	<title>Profile</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -33,13 +33,13 @@
 </head>
 <body class="animsition">
 
-	<!-- Header -->
+  <!-- Header -->
 	<?php include("entete.php"); ?>
 
 	<!-- Title Page -->
 	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-kigurumi.png);">
 		<h2 class="l-text2 t-center">
-			Contact
+			Création de compte
 		</h2>
 	</section>
 
@@ -48,104 +48,123 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 p-b-30">
-					<div class="p-r-20 p-r-0-lg">
-						<div class="contact-map size21" id="google_map" data-map-x="47.644708" data-map-y="-2.748415" data-pin="images/icons/icon-position-map.png" data-scrollwhell="0" data-draggable="1"></div>
-					</div>
-				</div>
 
-				<div class="col-md-6 p-b-30">
+          <?php
+          if(isset($_POST['name']) AND isset($_POST['prenom']) AND isset($_POST['email']) AND isset($_POST['birthday']) AND isset($_POST['password'])){
+            if($_POST['name']!=null AND $_POST['prenom']!=null AND $_POST['birthday']!=null AND $_POST['email']!=null AND $_POST['password']!=null)
+            {
+              echo '<h4 class="m-text26 p-b-36 p-t-15">Votre compte a été créé</h4>';
+            }
+            else
+            {
+  					echo'
+            <form class="leave-comment" action="account-create.php" method="post">
+  						<h4 class="m-text26 p-b-36 p-t-15">
+  							Saisissez vos informations
+  						</h4>
 
-						<?php
-						if(isset($_POST['name']) AND isset($_POST['phone-number']) AND isset($_POST['email'])){
-							if($_POST['name']!=null AND $_POST['phone-number']!=null AND $_POST['email']!=null)
-							{
+  						<div class="bo4 of-hidden size15 m-b-20">
+  							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*" value="'.$_POST['name'].'">
+  						</div>
 
-								echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
+              <div class="bo4 of-hidden size15 m-b-20">
+  							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$_POST['prenom'].'">
+  						</div>
 
-							}
-							else{
+              <div>Date de naissance*</div>
+              <div class="bo4 of-hidden size15 m-b-20">
+                <input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday" value="'.$_POST['birthday'].'">
+              </div>
 
-								echo '
-								<form class="leave-comment" action="contact.php" method="post">
-									<h4 class="m-text26 p-b-36 p-t-15">
-										Envoyez nous votre message
-									</h4>
+  						<div class="bo4 of-hidden size15 m-b-20">
+  							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Numéro de téléphone" value="'.$_POST['phone-number'].'">
+  						</div>
 
-									<div class="bo4 of-hidden size15 m-b-20">
-										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom complet*" value="'.$_POST['name'].'">
-									</div>
+  						<div class="bo4 of-hidden size15 m-b-20">
+  							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Adresse mail*" value="'.$_POST['email'].'">
+  						</div>
 
-									<div class="bo4 of-hidden size15 m-b-20">
-										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Numéro de téléphone*" value="'.$_POST['phone-number'].'">
-									</div>
+              <div class="bo4 of-hidden size15 m-b-20">
+                <input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" value="'.$_POST['password'].'">
+              </div>
 
-									<div class="bo4 of-hidden size15 m-b-20">
-										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Adresse mail*" value="'.$_POST['email'].'">
-									</div>
+              <div class="bo4 of-hidden size15 m-b-20">
+                <input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*">
+              </div>
 
-									<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message">
-										'.$_POST['message'].'
-									</textarea>
+              <div style="color:red" class="m-text15 p-b-36 p-t-15">
+                Informations incomplètes
+              </div>
 
-									<div style="color:red" class="m-text15 p-b-36 p-t-15">
-										Informations incomplètes
-									</div>
+  						<div class="w-size25">
+  							<!-- Button -->
+  							<button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" type="submit">
+  								S\'inscrire
+  							</button>
+  						</div>
 
-									<div class="w-size25">
-										<!-- Button -->
-										<button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" type="submit">
-											Envoyer
-										</button>
-									</div>
+              <div class="s-text7">
+                Les informations (*) sont obligatoires
+              </div>
+  					</form>';
+            }
+          }
+          else
+          {
+          echo'
+          <form class="leave-comment" action="account-create.php" method="post">
+            <h4 class="m-text26 p-b-36 p-t-15">
+              Saisissez vos informations
+            </h4>
 
-									<div class="s-text7">
-										Les informations (*) sont obligatoires
-									</div>
-								</form>';
-							}
-						}
-						else
-						{
-							echo '
-							<form class="leave-comment" action="contact.php" method="post">
-								<h4 class="m-text26 p-b-36 p-t-15">
-									Envoyez nous votre message
-								</h4>
+            <div class="bo4 of-hidden size15 m-b-20">
+              <input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*">
+            </div>
 
-								<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom complet*">
-								</div>
+            <div class="bo4 of-hidden size15 m-b-20">
+              <input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*">
+            </div>
 
-								<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Numéro de téléphone*">
-								</div>
+            <div>Date de naissance*</div>
+            <div class="bo4 of-hidden size15 m-b-20">
+              <input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday">
+            </div>
 
-								<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Adresse mail*">
-								</div>
+            <div class="bo4 of-hidden size15 m-b-20">
+              <input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Nuémro de téléphone">
+            </div>
 
-								<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message"></textarea>
+            <div class="bo4 of-hidden size15 m-b-20">
+              <input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Adresse mail*" value="'.$_GET['mail'].'">
+            </div>
 
-								<div class="w-size25">
-									<!-- Button -->
+            <div class="bo4 of-hidden size15 m-b-20">
+              <input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*">
+            </div>
 
-									<button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" type="submit">
-										Send
-									</button>
-								</div>
+            <div class="bo4 of-hidden size15 m-b-20">
+              <input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*">
+            </div>
 
-								<div class="s-text7">
-									Les informations (*) sont obligatoires
-								</div>
-							</form>';
-						}
-						?>
+            <div class="w-size25">
+              <!-- Button -->
+              <button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" type="submit">
+                S\'inscrire
+              </button>
+            </div>
+
+            <div class="s-text7">
+              Les informations (*) sont obligatoires
+            </div>
+          </form>';
+        }
+        ?>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Footer -->
+  <!-- Footer -->
 	<?php include("pied_de_page.php"); ?>
 
 	<!-- Back to top -->
@@ -158,6 +177,8 @@
 	<!-- Container Selection -->
 	<div id="dropDownSelect1"></div>
 	<div id="dropDownSelect2"></div>
+
+
 
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>

@@ -12,9 +12,9 @@
         </p>
 
         <div class="flex-m p-t-30">
-          <a href="https://www.facebook.com/Kigurumi-et-leurs-Amis-874336442756314/" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
-          <a href="https://www.instagram.com/kigurumi_et_leurs_amis/" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
-          <a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
+          <a href="https://www.fb.me/KigurumiEtLeursAmis " class="fs-18 color1 p-r-20 fa fa-facebook"></a>
+          <a href="https://www.instagram.com/kigurumietleursamis/" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
+          <a href="https://www.pinterest.fr/kigurumicontact/" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
           <a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
           <a href="https://www.youtube.com/channel/UCo5PHPtBjv9CYNmpUiYXv-Q" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
         </div>
@@ -79,11 +79,6 @@
           </a>
         </li>
 
-        <li class="p-b-9">
-          <a href="#" class="s-text7">
-            Returns
-          </a>
-        </li>
       </ul>
     </div>
 

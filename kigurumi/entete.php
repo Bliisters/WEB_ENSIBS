@@ -4,11 +4,11 @@
   <div class="container-menu-header">
     <div class="topbar">
       <div class="topbar-social">
-        <a href="#" class="topbar-social-item fa fa-facebook"></a>
-        <a href="#" class="topbar-social-item fa fa-instagram"></a>
-        <a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
+        <a href="https://www.fb.me/KigurumiEtLeursAmis" class="topbar-social-item fa fa-facebook"></a>
+        <a href="https://www.instagram.com/kigurumietleursamis/" class="topbar-social-item fa fa-instagram"></a>
+        <a href="https://www.pinterest.fr/kigurumicontact/" class="topbar-social-item fa fa-pinterest-p"></a>
         <a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-        <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+        <a href="https://www.youtube.com/channel/UCo5PHPtBjv9CYNmpUiYXv-Q" class="topbar-social-item fa fa-youtube-play"></a>
       </div>
 
       <span class="topbar-child1">
@@ -68,7 +68,7 @@
 
       <!-- Header Icon -->
       <div class="header-icons">
-        <a href="#" class="header-wrapicon1 dis-block">
+        <a href="account.php" class="header-wrapicon1 dis-block">
           <img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
         </a>
 

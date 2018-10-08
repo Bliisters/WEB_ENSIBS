@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<title>A propos</title>
+	<title>Profile</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -33,50 +33,64 @@
 </head>
 <body class="animsition">
 
-	<!-- Header -->
+  <!-- Header -->
 	<?php include("entete.php"); ?>
 
 	<!-- Title Page -->
 	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-kigurumi.png);">
 		<h2 class="l-text2 t-center">
-			A propos
+			Compte client
 		</h2>
 	</section>
 
 	<!-- content page -->
-	<section class="bgwhite p-t-66 p-b-38">
+	<section class="bgwhite p-t-66 p-b-60">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4 p-b-30">
-					<div class="hov-img-zoom">
-						<img src="images/banner-14.jpg" alt="IMG-ABOUT">
-					</div>
+				<div class="col-md-6 p-b-30">
+						<h4 class="m-text26 p-b-36 p-t-15">
+							Vous n'avez pas encore de compte ?
+						</h4>
+
+						<div class="bo4 of-hidden size15 m-b-20">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email-account" placeholder="Adresse mail">
+						</div>
+
+						<div class="w-size25">
+							<!-- Button -->
+  							<button OnClick="window.location.href='account-create.php?mail=email@exemple.com'" class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
+  								S'inscrire
+  							</button>
+						</div>
 				</div>
 
-				<div class="col-md-8 p-b-30">
-					<h3 class="m-text26 p-t-15 p-b-16">
-						Our story
-					</h3>
+				<div class="col-md-6 p-b-30" style="background-color:#CCCCCC">
+          <div class="p-r-20 p-r-0-lg">
+						<h4 class="m-text26 p-b-36 p-t-15">
+							Vous avez déjà un compte client ?
+						</h4>
 
-					<p class="p-b-28">
-						Phasellus egestas nisi nisi, lobortis ultricies risus semper nec. Vestibulum pharetra ac ante ut pellentesque. Curabitur fringilla dolor quis lorem accumsan, vitae molestie urna dapibus. Pellentesque porta est ac neque bibendum viverra. Vivamus lobortis magna ut interdum laoreet. Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. Vivamus tristique vulputate ultricies. Sed vitae ultrices orci.
-					</p>
+						<div class="bo4 of-hidden size15 m-b-20">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email-account" placeholder="Adresse mail">
+						</div>
 
-					<div class="bo13 p-l-29 m-l-9 p-b-10">
-						<p class="p-b-11">
-							Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
-						</p>
+            <div class="bo4 of-hidden size15 m-b-20">
+              <input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-account" placeholder="Mot de passe">
+            </div>
 
-						<span class="s-text7">
-							- Steve Job’s
-						</span>
-					</div>
+						<div class="w-size25">
+							<!-- Button -->
+  							<button OnClick="window.location.href='account-profile.php'" class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
+  								Se connecter
+  							</button>
+						</div>
+          </div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Footer -->
+  <!-- Footer -->
 	<?php include("pied_de_page.php"); ?>
 
 	<!-- Back to top -->
@@ -112,6 +126,9 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 	</script>
+<!--===============================================================================================-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+	<script src="js/map-custom.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
