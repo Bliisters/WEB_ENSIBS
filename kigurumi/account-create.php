@@ -111,6 +111,10 @@
           }
           else
           {
+						$mail = "exemple@exemple.exemple";
+						if(isset($_POST["mail"]) && $_POST["mail"]!=null) {
+							$mail = $_POST["mail"];
+						}
           echo'
           <form class="leave-comment" action="account-create.php" method="post">
             <h4 class="m-text26 p-b-36 p-t-15">
@@ -135,7 +139,7 @@
             </div>
 
             <div class="bo4 of-hidden size15 m-b-20">
-              <input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Adresse mail*" value="'.$_GET['mail'].'">
+              <input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Adresse mail*" value="'.$mail.'">
             </div>
 
             <div class="bo4 of-hidden size15 m-b-20">

@@ -52,16 +52,18 @@
 							Vous n'avez pas encore de compte ?
 						</h4>
 
+					<form method="post" action="account-create.php">
 						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email-account" placeholder="Adresse mail">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="mail" placeholder="Adresse mail">
 						</div>
 
 						<div class="w-size25">
 							<!-- Button -->
-  							<button OnClick="window.location.href='account-create.php?mail=email@exemple.com'" class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
+  							<button type="submit" class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
   								S'inscrire
   							</button>
 						</div>
+					</form>
 				</div>
 
 				<div class="col-md-6 p-b-30" style="background-color:#CCCCCC">
