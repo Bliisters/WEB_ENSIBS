@@ -214,25 +214,66 @@
 
 							<div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
 								<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-									Commentaires (0)
+
+									<?php
+									}
+									$reponse->closeCursor();
+									?>
+
+
+
+									<?php
+										try
+										{
+											$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
+										}
+
+										catch (Exception $e)
+										{
+											die('Erreur : ' . $e->getMessage());
+										}
+										$reponse2 = $bdd->prepare('SELECT comments.Titre, comments.Commentaire, users.Prenom FROM products, users, comments WHERE products.ID = 1 AND products.ID=comments.ID_products AND users.ID=comments.ID_users GROUP BY comments.ID');
+										$reponse2->execute();
+										$number = $reponse2->rowCount()
+										?>
+
+
+
+									Commentaires (<?php echo $number ?>)
 									<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
 									<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
 								</h5>
 
+									<?php
+									while ($donnees2 = $reponse2->fetch())
+									{
+										?>
+
+
 								<div class="dropdown-content dis-none p-t-15 p-b-23">
 									<p class="s-text8">
-										Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
+
+
+										<b><?php echo $donnees2['Titre']; ?></b>
+										<br>
+										<?php echo $donnees2['Commentaire']; ?>
+										<br>
+										<i><?php echo $donnees2['Prenom']; ?></i>
+
 									</p>
+									<?php
+									}
+									$reponse2->closeCursor();
+									?>
+
+
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-			<?php
-		}
-		$reponse->closeCursor();
-	?>
+
 
 
 
