@@ -165,8 +165,8 @@
 						}
 
 						if(isset($_GET['type'])){
-							$reponse = $bdd->prepare('SELECT * FROM products WHERE Type=?');
-							$reponse->execute(array($_GET['type']));
+							$reponse = $bdd->prepare('SELECT * FROM products WHERE Type LIKE :type');
+							$reponse->execute(array(':type' => $_GET['type']));
 						}
 						elseif(isset($_GET['search-product']) AND isset($_GET['sorting'])){
 							if($_GET['sorting']=='popularity'){
@@ -229,7 +229,7 @@
 									</div>
 
 									<div class="block2-txt p-t-20">
-										<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
+										<a href="product-detail.php?ID=<?php echo $donnees['ID']; ?>" class="block2-name dis-block s-text3 p-b-5">
 											<?php echo $donnees['Nom']; ?>
 										</a>
 
