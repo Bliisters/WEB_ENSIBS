@@ -129,7 +129,6 @@
 							</button>
 
 						</div>
-					</form>
 					</div>
 				</div>
 
@@ -139,24 +138,23 @@
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting">
-									<option>Trier par</option>
-									<option>Popularité </option>
-									<option>Prix: mmin to max</option>
-									<option>Prix: max to min</option>
+									<option value="default";>Trier par</option>
+									<option value="popularity">Popularité</option>
+									<option value="mintomax">Prix: min to max</option>
+									<option value ="maxtomin">Prix: max to min</option>
 								</select>
-							</div>
 						</div>
-
-						<span class="s-text8 p-t-5 p-b-5">
-							Resultats 1–12 sur 16
-						</span>
 					</div>
 
-					<!-- Product -->
-					<div class="row">
+					<div class="w-size25">
+						<!-- Button -->
+						<button class="flex-c-m size15 bg7 bo-rad-15 hov1 s-text14 trans-0-4" type="submit">
+							Trier
+						</button>
+					</div>
+				</form>
 
 						<?php
-
 						try
 						{
 							$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -171,13 +169,27 @@
 							$reponse->execute(array($_GET['type']));
 						}
 						elseif(isset($_GET['search-product'])){
-							$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom LIKE \'%?%\'');
-							$reponse->execute(array($_GET['search-product']));
-						}
-						else{
-							$reponse = $bdd->query('SELECT * FROM products');
+							$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom LIKE :name');
+							$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
 						}
 
+						else{
+							$reponse = $bdd->prepare('SELECT * FROM products');
+							$reponse->execute();
+
+						}
+						$number = $reponse->rowCount();
+						?>
+
+						<span class="s-text8 p-t-5 p-b-5">
+							<?php echo $number ?> Résultats
+						</span>
+					</div>
+
+					<!-- Product -->
+					<div class="row">
+
+						<?php
 						while ($donnees = $reponse->fetch())
 						{
 							?>
@@ -214,7 +226,6 @@
 										</div>
 									</div>
 								</div>
-
 							<?php
 						}
 						$reponse->closeCursor();

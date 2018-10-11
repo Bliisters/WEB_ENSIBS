@@ -2,19 +2,19 @@
 session_start();
 $redirect = 'index.php';
 if(isset($_GET['location'])){
-	$redirect = $_GET['location']
+	$redirect = $_GET['location'];
 }
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header('location: '.$redirect);
     exit;
 }
-if($_SERVER['REQUEST_METHOD'] == 'post') {
+//if($_SERVER['REQUEST_METHOD'] == 'post') {
 	if(isset($_POST['email-account']) && isset($_POST['password-account']) && $_POST['email-account'] != NULL && $_POST['password-account'] != NULL){
 		$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '') or die();
 		$req = $bdd->prepare('SELECT * FROM users WHERE Mail = ?');
 		$req->execute(array($_POST['email-account']));
 		$donnees = $req->fetch();
-		if($donnees['ID'] != NULL && password_verify($_POST['password-account'], $donnees['MotDePasse'])){
+		if(isset($donnees['ID']) && password_verify($_POST['password-account'], $donnees['MotDePasse'])){
 			session_start();
 			$_SESSION['loggedin'] = true;
 			$_SESSION['Nom'] = $donnees['Nom'];
@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'post') {
 			$error = true;
 		}
 	}
-}
+//}
 ?>
 
 <!DOCTYPE html>
@@ -115,7 +115,7 @@ if($_SERVER['REQUEST_METHOD'] == 'post') {
 							<?php  if(isset($error)) {
 								echo '<div style="color:red" class="m-text15 p-b-36 p-t-15">
 								Le nom d\'utilisateur ou le mot de passe est incorrect.
-								</div>'
+								</div>';
 							}
 							?>
 

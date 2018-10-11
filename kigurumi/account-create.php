@@ -55,7 +55,7 @@
             {
 							$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
 							$req = $bdd->prepare('SELECT COUNT(ID) FROM users WHERE Mail = ?');
-							$req->execute(array($item['email']));
+							$req->execute(array($_POST['email']));
 							$donnees =  $req->fetch();
 							if($donnees['COUNT(ID)'] == 1){
 								echo'
@@ -117,7 +117,7 @@
 		  					</form>';
 							}
 							else{
-								if($_POST['password'] == $_POST['password-confirmation']){
+								if($_POST['password'] != $_POST['password-confirmation']){
 									echo'
 			            <form class="leave-comment" action="account-create.php" method="post">
 			  						<h4 class="m-text26 p-b-36 p-t-15">
