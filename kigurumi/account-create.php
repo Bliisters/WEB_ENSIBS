@@ -58,6 +58,8 @@
 							$req = $bdd->prepare('SELECT COUNT(ID) FROM users WHERE Mail = ?');
 							$req->execute(array($_POST['email']));
 							$donnees =  $req->fetch();
+
+
 							if($donnees['COUNT(ID)'] == 1){
 								echo'
 		            <form class="leave-comment" action="account-create.php" method="post">
@@ -179,6 +181,16 @@
 								}
 								else{
 									echo '<h4 class="m-text26 p-b-36 p-t-15">Votre compte a été créé</h4>';
+									$req=$bdd->prepare('INSERT INTO users (Civilite, Nom, Prenom, DateNaissance, Telephone, Mail, MotDePasse)
+										VALUES (:civilite,:name,:prenom,:birthday,:telephone,:email,:password)');
+										$req->execute(array(
+											'civilite' => $_POST['civilite'],
+											'name' =>$_POST['name'],
+											'prenom' => $_POST['prenom'],
+											'birthday' => $_POST['birthday'],
+											'telephone' => $_POST['phone-number'],
+											'email' => $_POST['email'],
+											'password' => $_POST['password']));
 								}
 							}
 							$req->closeCursor();
