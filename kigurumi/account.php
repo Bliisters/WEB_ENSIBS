@@ -72,20 +72,22 @@
 							Vous avez déjà un compte client ?
 						</h4>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email-account" placeholder="Adresse mail">
-						</div>
+						<form method="post" action="" enctype="multipart/form-data">
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email-account" placeholder="Adresse mail">
+							</div>
 
-            <div class="bo4 of-hidden size15 m-b-20">
-              <input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-account" placeholder="Mot de passe">
-            </div>
+	            <div class="bo4 of-hidden size15 m-b-20">
+	              <input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-account" placeholder="Mot de passe">
+	            </div>
 
-						<div class="w-size25">
-							<!-- Button -->
-  							<button OnClick="window.location.href='account-profile.php'" class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
+							<div class="w-size25">
+								<!-- Button -->
+  							<button type="submit" class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
   								Se connecter
   							</button>
-						</div>
+							</div>
+						</form>
           </div>
 				</div>
 			</div>

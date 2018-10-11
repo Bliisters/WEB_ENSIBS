@@ -83,15 +83,15 @@
             <ul class="header-cart-wrapitem">
               <?php
               if(isset($_SESSION['cart'])) {
-                $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', 'pass');
+                $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
                 $cart = $_SESSION['cart'];
-                $req = $bdd->prepare('SELECT * FROM table WHERE nom = ?');
+                $req = $bdd->prepare('SELECT * FROM users WHERE nom = ?');
                 foreach ($cart as $item) {
                   $req->execute(array($item['nom']));
-                  $donnees = $reponse->fetch();                         /*Verifier les attributs bdd*/
+                  $donnees = $req->fetch();                         /*Verifier les attributs bdd*/
                   echo '<li class="header-cart-item">
                     <div class="header-cart-item-img">
-                      <img src="images/'.$donnees['img'].'.jpg" alt="IMG">
+                      <img src="images/'.$donnees['img']" alt="IMG">
                     </div>
 
                     <div class="header-cart-item-txt">
@@ -104,6 +104,7 @@
                       </span>
                     </div>
                   </li>';
+                  $req->closeCursor();
                 }
               }
             ?>
