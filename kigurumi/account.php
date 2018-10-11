@@ -1,3 +1,34 @@
+<?php
+session_start();
+$redirect = 'index.php';
+if(isset($_GET['location'])){
+	$redirect = $_GET['location']
+}
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header('location: '.$redirect);
+    exit;
+}
+if($_SERVER['REQUEST_METHOD'] == 'post') {
+	if(isset($_POST['email-account']) && isset($_POST['password-account']) && $_POST['email-account'] != NULL && $_POST['password-account'] != NULL){
+		$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '') or die();
+		$req = $bdd->prepare('SELECT * FROM users WHERE Mail = ?');
+		$req->execute(array($_POST['email-account']));
+		$donnees = $req->fetch();
+		if($donnees['ID'] != NULL && password_verify($_POST['password-account'], $donnees['MotDePasse'])){
+			session_start();
+			$_SESSION['loggedin'] = true;
+			$_SESSION['Nom'] = $donnees['Nom'];
+			$_SESSION['Prenom'] = $donnees['Prenom'];
+			header('location: '.$redirect);
+			exit;
+		}
+		else{
+			$error = true;
+		}
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -72,7 +103,7 @@
 							Vous avez déjà un compte client ?
 						</h4>
 
-						<form method="post" action="" enctype="multipart/form-data">
+						<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
 							<div class="bo4 of-hidden size15 m-b-20">
 								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email-account" placeholder="Adresse mail">
 							</div>
@@ -80,6 +111,13 @@
 	            <div class="bo4 of-hidden size15 m-b-20">
 	              <input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-account" placeholder="Mot de passe">
 	            </div>
+
+							<?php  if(isset($error)) {
+								echo '<div style="color:red" class="m-text15 p-b-36 p-t-15">
+								Le nom d\'utilisateur ou le mot de passe est incorrect.
+								</div>'
+							}
+							?>
 
 							<div class="w-size25">
 								<!-- Button -->

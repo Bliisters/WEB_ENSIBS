@@ -1,3 +1,7 @@
+<?php if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+} ?>
+
 <!-- Header -->
 <header class="header1">
   <!-- Header desktop -->
@@ -17,7 +21,9 @@
 
       <div class="topbar-child2">
         <span class="topbar-email">
-          test@example.com
+          <?php if(isset($_SESSION['Nom']) && isset($_SESSION['Prenom'])){
+            echo $_SESSION['Nom'].' '.$_SESSION['Prenom'];
+          } ?>
         </span>
 
         <div class="topbar-language rs1-select2">
@@ -91,11 +97,11 @@
                   $donnees = $req->fetch();                         /*Verifier les attributs bdd*/
                   echo '<li class="header-cart-item">
                     <div class="header-cart-item-img">
-                      <img src="images/'.$donnees['img'].'"alt="IMG">
+                      <img src="images/'.$donnees['img'].'" alt="IMG">
                     </div>
 
                     <div class="header-cart-item-txt">
-                      <a href="" class="header-cart-item-name">
+                      <a href="#" class="header-cart-item-name">
                         '.$donnees['nom'].'
                       </a>
 
