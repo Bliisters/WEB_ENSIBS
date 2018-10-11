@@ -52,9 +52,9 @@
 					<table class="table-shopping-cart">
 						<tr class="table-head">
 							<th class="column-1"></th>
-							<th class="column-2">Product</th>
-							<th class="column-3">Price</th>
-							<th class="column-4 p-l-70">Quantity</th>
+							<th class="column-2">Produit</th>
+							<th class="column-3">Prix</th>
+							<th class="column-4 p-l-70">Quantité</th>
 							<th class="column-5">Total</th>
 						</tr>
 
@@ -118,7 +118,7 @@
 					<div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
 						<!-- Button -->
 						<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-							Apply coupon
+							Utiliser coupon
 						</button>
 					</div>
 				</div>
@@ -126,7 +126,7 @@
 				<div class="size10 trans-0-4 m-t-10 m-b-10">
 					<!-- Button -->
 					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-						Update Cart
+						Vérifier Panier
 					</button>
 				</div>
 			</div>

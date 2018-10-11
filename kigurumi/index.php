@@ -189,7 +189,7 @@
 
 							<div class="w-size2 p-t-25">
 								<!-- Button -->
-								<a href="account.php" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+								<a href="newsletter.php" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
 									S'inscrire
 								</a>
 							</div>
@@ -213,147 +213,27 @@
 			<div class="wrap-slick2">
 				<div class="slick2">
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="images/kigurumi-ecureuil-volant.jpg" alt="IMG-PRODUCT">
+					<?php
+					try
+					{
+						$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
+					}
 
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Ajouter
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Herschel supply co 25l
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$75.00
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="images/kigurumi-herisson.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Ajouter
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Denim jacket blue
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$92.50
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="images/kigurumi-panda-roux.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Ajouter
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Coach slim easton black
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$165.90
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="images/item-07.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Ajouter
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Frayed denim shorts
-								</a>
-
-								<span class="block2-oldprice m-text7 p-r-5">
-									$29.50
-								</span>
-
-								<span class="block2-newprice m-text8 p-r-5">
-									$15.90
-								</span>
-							</div>
-						</div>
-					</div>
+					catch (Exception $e)
+					{
+						die('Erreur : ' . $e->getMessage());
+					}
+					$reponse = $bdd->prepare('SELECT * FROM products LIMIT 0, 20');
+					$reponse->execute();
+					while ($donnees = $reponse->fetch())
+					{
+						?>
 
 					<div class="item-slick2 p-l-15 p-r-15">
 						<!-- Block2 -->
 						<div class="block2">
 							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="images/item-02.jpg" alt="IMG-PRODUCT">
+								<img src="images/<?php echo $donnees['ImageName']; ?>" alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
 									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
@@ -371,122 +251,24 @@
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Herschel supply co 25l
+								<a href="product-detail.php?ID=<?php echo $donnees['ID']; ?>" class="block2-name dis-block s-text3 p-b-5">
+									<?php echo $donnees['Nom']; ?>
 								</a>
 
 								<span class="block2-price m-text6 p-r-5">
-									$75.00
+									<?php echo $donnees['Prix']; ?> €
 								</span>
 							</div>
 						</div>
 					</div>
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="images/item-03.jpg" alt="IMG-PRODUCT">
+					<?php
+				}
+				$reponse->closeCursor();
+				?>
 
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
 
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Ajouter
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Denim jacket blue
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$92.50
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="images/item-05.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Ajouter
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Coach slim easton black
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$165.90
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="images/item-07.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Ajouter
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Frayed denim shorts
-								</a>
-
-								<span class="block2-oldprice m-text7 p-r-5">
-									$29.50
-								</span>
-
-								<span class="block2-newprice m-text8 p-r-5">
-									$15.90
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
-
 		</div>
 	</section>
 
@@ -499,98 +281,13 @@
 				</span>
 
 				<h3 class="l-text1 fs-35-sm">
-					Lookbook
+					Presentation
 				</h3>
 
 				<span class="btn-play s-text4 hov5 cs-pointer p-t-25" data-toggle="modal" data-target="#modal-video-01">
-					<i class="fa fa-play" aria-hidden="true"></i>
-					Play Video
+					<i href="" class="fa fa-play" aria-hidden="true"></i>
+					Regarder la Video
 				</span>
-			</div>
-		</div>
-	</section>
-
-	<!-- Blog -->
-	<section class="blog bgwhite p-t-94 p-b-65">
-		<div class="container">
-			<div class="sec-title p-b-52">
-				<h3 class="m-text5 t-center">
-					Our Blog
-				</h3>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
-					<!-- Block3 -->
-					<div class="block3">
-						<a href="blog-detail.html" class="block3-img dis-block hov-img-zoom">
-							<img src="images/blog-01.jpg" alt="IMG-BLOG">
-						</a>
-
-						<div class="block3-txt p-t-14">
-							<h4 class="p-b-7">
-								<a href="blog-detail.html" class="m-text11">
-									Black Friday Guide: Best Sales & Discount Codes
-								</a>
-							</h4>
-
-							<span class="s-text6">By</span> <span class="s-text7">Nancy Ward</span>
-							<span class="s-text6">on</span> <span class="s-text7">July 22, 2017</span>
-
-							<p class="s-text8 p-t-16">
-								Duis ut velit gravida nibh bibendum commodo. Sus-pendisse pellentesque mattis augue id euismod. Inter-dum et malesuada fames
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
-					<!-- Block3 -->
-					<div class="block3">
-						<a href="blog-detail.html" class="block3-img dis-block hov-img-zoom">
-							<img src="images/blog-02.jpg" alt="IMG-BLOG">
-						</a>
-
-						<div class="block3-txt p-t-14">
-							<h4 class="p-b-7">
-								<a href="blog-detail.html" class="m-text11">
-									The White Sneakers Nearly Every Fashion Girls Own
-								</a>
-							</h4>
-
-							<span class="s-text6">By</span> <span class="s-text7">Nancy Ward</span>
-							<span class="s-text6">on</span> <span class="s-text7">July 18, 2017</span>
-
-							<p class="s-text8 p-t-16">
-								Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit ame
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
-					<!-- Block3 -->
-					<div class="block3">
-						<a href="blog-detail.html" class="block3-img dis-block hov-img-zoom">
-							<img src="images/blog-03.jpg" alt="IMG-BLOG">
-						</a>
-
-						<div class="block3-txt p-t-14">
-							<h4 class="p-b-7">
-								<a href="blog-detail.html" class="m-text11">
-									New York SS 2018 Street Style: Annina Mislin
-								</a>
-							</h4>
-
-							<span class="s-text6">By</span> <span class="s-text7">Nancy Ward</span>
-							<span class="s-text6">on</span> <span class="s-text7">July 2, 2017</span>
-
-							<p class="s-text8 p-t-16">
-								Proin nec vehicula lorem, a efficitur ex. Nam vehicula nulla vel erat tincidunt, sed hendrerit ligula porttitor. Fusce sit amet maximus nunc
-							</p>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</section>
@@ -764,6 +461,20 @@
 	<!-- Container Selection1 -->
 	<div id="dropDownSelect1"></div>
 
+	<!-- Modal Video 01-->
+	<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+
+		<div class="modal-dialog" role="document" data-dismiss="modal">
+			<div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+
+			<div class="wrap-video-mo-01">
+				<div class="w-full wrap-pic-w op-0-0"><img src="images/icons/video-16-9.jpg" alt="IMG"></div>
+				<div class="video-mo-01">
+					<iframe src="https://www.youtube.com/embed/jIPj2OST_lg?ecver=2" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 <!--===============================================================================================-->

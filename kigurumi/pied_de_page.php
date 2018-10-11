@@ -28,31 +28,31 @@
 
       <ul>
         <li class="p-b-9">
-          <a href="product.php?item=kigurumi" class="s-text7">
+          <a href="product.php?type=Kigurumi" class="s-text7">
             Kigurumi
           </a>
         </li>
 
         <li class="p-b-9">
-          <a href="product.php?item=chausson" class="s-text7">
+          <a href="product.php?type=Chausson" class="s-text7">
             Chaussons
           </a>
         </li>
 
         <li class="p-b-9">
-          <a href="product.php?item=bonnet" class="s-text7">
+          <a href="product.php?type=Bonnet" class="s-text7">
             Bonnets
           </a>
         </li>
 
         <li class="p-b-9">
-          <a href="product.php?item=accessoire" class="s-text7">
+          <a href="product.php?type=Accessoire" class="s-text7">
             Accessoires
           </a>
         </li>
 
         <li class="p-b-9">
-          <a href="product.php?item=kit" class="s-text7">
+          <a href="product.php?type=Kit" class="s-text7">
             Kits
           </a>
         </li>
@@ -89,13 +89,13 @@
 
       <ul>
         <li class="p-b-9">
-          <a href="#" class="s-text7">
+          <a href="contact.php" class="s-text7">
             Suivi de commande
           </a>
         </li>
 
         <li class="p-b-9">
-          <a href="#" class="s-text7">
+          <a href="contact.php" class="s-text7">
             FAQs
           </a>
         </li>
@@ -107,7 +107,7 @@
         Newsletter
       </h4>
 
-      <form>
+      <form action="newsletter.php" method="post">
         <div class="effect1 w-size9">
           <input class="s-text7 bg6 w-full p-b-5" type="text" name="email" placeholder="email@exemple.com">
           <span class="effect1-line"></span>
@@ -115,7 +115,7 @@
 
         <div class="w-size2 p-t-20">
           <!-- Button -->
-          <button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+          <button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4" type="submit">
             S'inscrire
           </button>
         </div>
@@ -125,23 +125,23 @@
   </div>
 
   <div class="t-center p-l-15 p-r-15">
-    <a href="#">
+    <a href="https://www.paypal.com/fr/home">
       <img class="h-size2" src="images/icons/paypal.png" alt="IMG-PAYPAL">
     </a>
 
-    <a href="#">
+    <a href="https://www.visa.fr/">
       <img class="h-size2" src="images/icons/visa.png" alt="IMG-VISA">
     </a>
 
-    <a href="#">
+    <a href="https://www.mastercard.fr/fr-fr.html">
       <img class="h-size2" src="images/icons/mastercard.png" alt="IMG-MASTERCARD">
     </a>
 
-    <a href="#">
+    <a href="https://www.americanexpress.com/fr/">
       <img class="h-size2" src="images/icons/express.png" alt="IMG-EXPRESS">
     </a>
 
-    <a href="#">
+    <a href="https://www.discover.com/">
       <img class="h-size2" src="images/icons/discover.png" alt="IMG-DISCOVER">
     </a>
 
