@@ -190,7 +190,7 @@
 											'birthday' => $_POST['birthday'],
 											'telephone' => $_POST['phone-number'],
 											'email' => $_POST['email'],
-											'password' => $_POST['password']));
+											'password' => password_hash($_POST['password'], PASSWORD_DEFAULT)));
 								}
 							}
 							$req->closeCursor();
