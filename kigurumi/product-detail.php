@@ -110,15 +110,12 @@
 						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
 							<select class="selection-2" name="size">
 								<option>Choose an option</option>
-								<option>Size S</option>
-								<option>Size M</option>
-								<option>Size L</option>
-								<option>Size XL</option>
+								<option>Taille M (taille unique)</option>
 							</select>
 						</div>
 					</div>
 
-					<div class="flex-m flex-w">
+					<!-- <div class="flex-m flex-w">
 						<div class="s-text15 w-size15 t-center">
 							Color
 						</div>
@@ -132,7 +129,7 @@
 								<option>Blue</option>
 							</select>
 						</div>
-					</div>
+					</div> -->
 
 					<div class="flex-r-m flex-w p-t-10">
 						<div class="w-size16 flex-m flex-w">
