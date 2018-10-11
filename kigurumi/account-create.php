@@ -54,10 +54,10 @@
             if($_POST['name']!=null AND $_POST['prenom']!=null AND $_POST['birthday']!=null AND $_POST['email']!=null AND $_POST['password']!=null AND $_POST['civilite']!=null)
             {
 							$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
-							$req = $bdd->prepare('SELECT ID FROM users WHERE Mail = ?');
+							$req = $bdd->prepare('SELECT COUNT(ID) FROM users WHERE Mail = ?');
 							$req->execute(array($item['email']));
-							$donnees =  mysql_fetch_array($req);
-							if($donnees['ID'] === NULL){
+							$donnees =  $req->fetch();
+							if($donnees['COUNT(ID)'] == 1){
 								echo'
 		            <form class="leave-comment" action="account-create.php" method="post">
 		  						<h4 class="m-text26 p-b-36 p-t-15">
