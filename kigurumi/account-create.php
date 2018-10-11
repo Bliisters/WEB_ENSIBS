@@ -72,6 +72,13 @@
 		  							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$_POST['prenom'].'">
 		  						</div>
 
+									<div class="bo4 of-hidden size15 m-b-20">
+										<select class="sizefull s-text7 p-l-22 p-r-22" name="civilite">
+										<option value="homme">Homme</option>
+										<option value="femme">Femme</option>
+										</select>
+									</div>
+
 		              <div>Date de naissance*</div>
 		              <div class="bo4 of-hidden size15 m-b-20">
 		                <input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday" value="'.$_POST['birthday'].'">
@@ -124,6 +131,13 @@
 			              <div class="bo4 of-hidden size15 m-b-20">
 			  							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$_POST['prenom'].'">
 			  						</div>
+
+										<div class="bo4 of-hidden size15 m-b-20">
+											<select class="sizefull s-text7 p-l-22 p-r-22" name="civilite">
+											<option value="homme">Homme</option>
+											<option value="femme">Femme</option>
+											</select>
+										</div>
 
 			              <div>Date de naissance*</div>
 			              <div class="bo4 of-hidden size15 m-b-20">
@@ -184,6 +198,13 @@
   							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$_POST['prenom'].'">
   						</div>
 
+							<div class="bo4 of-hidden size15 m-b-20">
+								<select class="sizefull s-text7 p-l-22 p-r-22" name="civilite">
+								<option value="homme">Homme</option>
+								<option value="femme">Femme</option>
+								</select>
+							</div>
+
               <div>Date de naissance*</div>
               <div class="bo4 of-hidden size15 m-b-20">
                 <input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday" value="'.$_POST['birthday'].'">
@@ -241,6 +262,13 @@
             <div class="bo4 of-hidden size15 m-b-20">
               <input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*">
             </div>
+
+						<div class="bo4 of-hidden size15 m-b-20">
+							<select class="sizefull s-text7 p-l-22 p-r-22" name="civilite">
+							<option value="homme">Homme</option>
+							<option value="femme">Femme</option>
+							</select>
+						</div>
 
             <div>Date de naissance*</div>
             <div class="bo4 of-hidden size15 m-b-20">
