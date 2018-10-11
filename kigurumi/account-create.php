@@ -50,8 +50,8 @@
 				<div class="col-md-6 p-b-30">
 
           <?php
-          if(isset($_POST['name']) AND isset($_POST['prenom']) AND isset($_POST['email']) AND isset($_POST['birthday']) AND isset($_POST['password'])){
-            if($_POST['name']!=null AND $_POST['prenom']!=null AND $_POST['birthday']!=null AND $_POST['email']!=null AND $_POST['password']!=null)
+          if(isset($_POST['name']) AND isset($_POST['prenom']) AND isset($_POST['email']) AND isset($_POST['birthday']) AND isset($_POST['password']) AND isset($_POST['civilite'])){
+            if($_POST['name']!=null AND $_POST['prenom']!=null AND $_POST['birthday']!=null AND $_POST['email']!=null AND $_POST['password']!=null AND $_POST['civilite']!=null)
             {
 							$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
 							$req = $bdd->prepare('SELECT ID FROM users WHERE Mail = ?');
