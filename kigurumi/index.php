@@ -421,7 +421,7 @@
 					Free Delivery Worldwide
 				</h4>
 
-				<a href="#" class="s-text11 t-center">
+				<a href="about.php" class="s-text11 t-center">
 					Click here for more info
 				</a>
 			</div>
