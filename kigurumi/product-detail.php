@@ -251,13 +251,30 @@
 					<br>
 					<i><?php echo $donnees2['Prenom']; ?></i>
 
+
+					<br>
+					<br>
+					<?php if (isset($_SESSION["loggedin"]) === true):  ?>
+						<form class="leave-comment" action="account-create.php" method="post">
+
+						Votre avis nous intéresse !
+						<div class="bo4 of-hidden size15 m-b-20">
+						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*" value= "$title" required>
+						</div>
+
+						<div class="bo4 of-hidden size15 m-b-20">
+						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$comment'" required>
+						</div>
+
+
+
+					<?php endif; ?>
+
 				</p>
 				<?php
 			}
 			$reponse2->closeCursor();
 			?>
-
-
 		</div>
 	</div>
 </div>
