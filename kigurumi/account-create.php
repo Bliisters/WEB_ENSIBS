@@ -68,11 +68,11 @@
 								</h4>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*" value="'.$_POST['name'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*" value="'.$_POST['name'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$_POST['prenom'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$_POST['prenom'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
@@ -84,7 +84,7 @@
 
 								<div>Date de naissance*</div>
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday" value="'.$_POST['birthday'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday" value="'.$_POST['birthday'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
@@ -92,15 +92,15 @@
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Adresse mail*" value="'.$_POST['email'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Adresse mail*" value="'.$_POST['email'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" value="'.$_POST['password'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" value="'.$_POST['password'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" required>
 								</div>
 
 								<div style="color:red" class="m-text15 p-b-36 p-t-15">
@@ -128,11 +128,11 @@
 									</h4>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*" value="'.$_POST['name'].'">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*" value="'.$_POST['name'].'" required>
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$_POST['prenom'].'">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$_POST['prenom'].'" required>
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
@@ -144,7 +144,7 @@
 
 									<div>Date de naissance*</div>
 									<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday" value="'.$_POST['birthday'].'">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday" value="'.$_POST['birthday'].'" required>
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
@@ -152,15 +152,15 @@
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Adresse mail*" value="'.$_POST['email'].'">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Adresse mail*" value="'.$_POST['email'].'" required>
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" value="'.$_POST['password'].'">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" value="'.$_POST['password'].'" required>
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" required>
 									</div>
 
 									<div style="color:red" class="m-text15 p-b-36 p-t-15">
@@ -204,11 +204,11 @@
 								</h4>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*" value="'.$_POST['name'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*" value="'.$_POST['name'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$_POST['prenom'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" value="'.$_POST['prenom'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
@@ -220,7 +220,7 @@
 
 								<div>Date de naissance*</div>
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday" value="'.$_POST['birthday'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday" value="'.$_POST['birthday'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
@@ -228,15 +228,15 @@
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Adresse mail*" value="'.$_POST['email'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Adresse mail*" value="'.$_POST['email'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" value="'.$_POST['password'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" value="'.$_POST['password'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" required>
 								</div>
 
 								<div style="color:red" class="m-text15 p-b-36 p-t-15">
@@ -258,7 +258,7 @@
 						}
 						else
 						{
-							$mail = "exemple@exemple.exemple";
+							$mail = "";
 							if(isset($_POST["mail"]) && $_POST["mail"]!=null) {
 								$mail = $_POST["mail"];
 							}
@@ -269,11 +269,11 @@
 							</h4>
 
 							<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom*" required>
 							</div>
 
 							<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="prenom" placeholder="Prénom*" required>
 							</div>
 
 							<div class="bo4 of-hidden size15 m-b-20">
@@ -285,23 +285,23 @@
 
 							<div>Date de naissance*</div>
 							<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birthday" required>
 							</div>
 
 							<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="phone" name="phone-number" placeholder="Nuémro de téléphone">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="phone" name="phone-number" placeholder="Numéro de téléphone">
 							</div>
 
 							<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Adresse mail*" value="'.$mail.'">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Adresse mail*" value="'.$mail.'" required>
 							</div>
 
 							<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" required>
 							</div>
 
 							<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" required>
 							</div>
 
 							<div class="w-size25">
