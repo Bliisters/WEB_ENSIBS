@@ -50,12 +50,7 @@
 		die('Erreur : ' . $e->getMessage());
 	}
 	$reponse = $bdd->prepare('SELECT * FROM products WHERE ID = :id');
-if(isset($_POST['id-product'])){
-	$reponse->execute(array(':id' => $_POST['id-product']));
-}
-else{
 	$reponse->execute(array(':id' => $_GET['ID']));
-}
 	while ($donnees = $reponse->fetch())
 	{
 		?>
@@ -231,12 +226,7 @@ else{
 				die('Erreur : ' . $e->getMessage());
 			}
 			$reponse2 = $bdd->prepare('SELECT comments.Titre, comments.Commentaire, users.Prenom FROM products, users, comments WHERE products.ID = :id AND products.ID=comments.ID_products AND users.ID=comments.ID_users GROUP BY comments.ID');
-			if(isset($_POST['id-product'])){
-				$reponse2->execute(array(':id' => $_POST['id-product']));
-			}
-			else{
-				$reponse2->execute(array(':id' => $_GET['ID']));
-			}
+			$reponse2->execute(array(':id' => $_GET['ID']));
 			$number = $reponse2->rowCount()
 			?>
 
@@ -269,32 +259,22 @@ else{
 			$reponse2->closeCursor();
 
 				if (isset($_SESSION["loggedin"])){
-
-				if(!isset($_POST['title']) OR !isset($_POST['comment'])){
 					  ?>
+
 						<div class="dropdown-content dis-none p-t-15 p-b-23">
-						<form class="leave-comment" action="product-detail.php" method="post">
+						<form class="leave-comment" action="product-detail-post.php" method="post">
 
 						Votre avis nous intéresse !
 
 						<div class="bo4 of-hidden size15 m-b-20">
-						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="title" placeholder="Titre*" value= "<?php ;?>" required>
+						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="title" placeholder="Titre*" required>
 						</div>
 
-						<?php
-						if(isset($_POST['id-product'])){
-							$id=$_POST['id-product'];
-						}
-						else{
-							$id=$_GET['ID'];
-						}
-						?>
-
-						<input type="hidden" name="id-product" value="<?php $id;?>" />
-						<input type="hidden" name="id-user" value="<?php $_SESSION['ID']; ?>" />
+						<input type="hidden" name="id-product" value="<?php echo $_GET['ID']; ?>">
+						<input type="hidden" name="id-user" value="<?php echo $_SESSION['ID']; ?>">
 
 						<div class="bo4 of-hidden size15 m-b-20">
-						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="comment" placeholder="Commentaire*" value="<?php ;?>" required>
+						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="comment" placeholder="Commentaire*" required>
 						</div>
 
 						<div class="w-size25">
@@ -304,38 +284,14 @@ else{
 						</button>
 						</div>
 						</form>
-						<?php
-				}
-				else{
-
-					try
-					{
-						$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
-					}
-					catch (Exception $e)
-					{
-						die('Erreur : ' . $e->getMessage());
-					}
-
-					$req=$bdd->prepare('INSERT INTO comments (ID_products, ID_users, Titre, Commentaire)
-					VALUES (:id_products,:id_users,:titre,:commentaire)');
-					$req->execute(array(
-						'id_products' => htmlspecialchars($_POST['id-product'], ENT_QUOTES, 'UTF-8'),
-						'id_users' =>htmlspecialchars($_POST['id-user'], ENT_QUOTES, 'UTF-8'),
-						'titre' => htmlspecialchars($_POST['title'], ENT_QUOTES, 'UTF-8'),
-						'commentaire' => htmlspecialchars($_POST['comment'], ENT_QUOTES, 'UTF-8')));
-						?>
-						<div class="dropdown-content dis-none p-t-15 p-b-23">Commentaire posté</div>
-						<?php
-				}
-				?>
-
-
 		</div>
+
 		<?php } ?>
 
 		</div>
 	</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -359,12 +315,7 @@ else{
 
 				<?php
 				$reponse = $bdd->prepare('SELECT * FROM products WHERE ID NOT LIKE :id LIMIT 0, 20');
-				if(isset($_POST['id-product'])){
-					$reponse->execute(array(':id' => $_POST['id-product']));
-				}
-				else{
-					$reponse->execute(array(':id' => $_GET['ID']));
-				}
+				$reponse->execute(array(':id' => $_GET['ID']));
 				while ($donnees = $reponse->fetch())
 				{
 					?>

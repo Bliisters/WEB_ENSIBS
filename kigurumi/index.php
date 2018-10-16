@@ -223,7 +223,7 @@
 					{
 						die('Erreur : ' . $e->getMessage());
 					}
-					$reponse = $bdd->prepare('SELECT * FROM products LIMIT 0, 20');
+					$reponse = $bdd->prepare('SELECT * FROM products ORDER BY RAND() LIMIT 0, 12');
 					$reponse->execute();
 					while ($donnees = $reponse->fetch())
 					{
