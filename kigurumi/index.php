@@ -180,7 +180,7 @@
 
 						<div class="block2-content sizefull ab-t-l flex-col-c-m">
 							<h4 class="m-text4 t-center w-size3 p-b-8">
-								Inscrivez vous pour profiter d'une réduction de 20%
+								Inscrivez vous pour une réduction de 20%
 							</h4>
 
 							<p class="t-center w-size4">
