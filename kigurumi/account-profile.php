@@ -57,6 +57,11 @@
 						Prenom : <?php echo $_SESSION['Prenom']; ?>
 					</p>
 					<a href="logout.php"> Déconnexion </a>
+					<p>
+						<?php if(isset($_SESSION['cart'])) {
+							print_r($_SESSION['cart']);
+						}?>
+					</p>
 				</div>
 			</div>
 		</div>

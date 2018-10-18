@@ -78,7 +78,11 @@
 
         <div class="header-wrapicon2">
           <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-          <span class="header-icons-noti">0</span>
+          <span class="header-icons-noti"><?php
+          if(isset($_SESSION['cart'])) {
+            echo(count($_SESSION['cart']));
+          }
+           ?></span>
 
           <!-- Header cart noti -->
           <div class="header-cart header-dropdown">
@@ -87,13 +91,13 @@
               if(isset($_SESSION['cart'])) {
                 $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
                 $cart = $_SESSION['cart'];
-                $req = $bdd->prepare('SELECT * FROM users WHERE Nom = ?');
+                $req = $bdd->prepare('SELECT * FROM products WHERE Nom = ?');
                 foreach ($cart as $item) {
                   $req->execute(array($item['nom']));
                   $donnees = $req->fetch();                         /*Verifier les attributs bdd*/
                   echo '<li class="header-cart-item">
-                  <div class="header-cart-item-img">
-                  <img src="images/'.$donnees['ImageName'].'" alt="IMG">
+                  <div class="header-cart-item-img" onclick="javascript:clickRemove(\''.$donnees['Nom'].'\')">
+                    <img src="images/'.$donnees['ImageName'].'" alt="IMG"/>
                   </div>
 
                   <div class="header-cart-item-txt">
@@ -102,7 +106,7 @@
                   </a>
 
                   <span class="header-cart-item-info">
-                  '.$item['quantite'].' x '.$donnees['Prix'].'
+                  '.$item['quantite'].' x '.$donnees['Prix'].'€
                   </span>
                   </div>
                   </li>';
@@ -112,7 +116,7 @@
               ?>
 
               <div class="header-cart-total">
-                Total: <?php echo (isset($_SESSION['cart_total'])) ? $_SESSION['cart_total'] : '0.00' ; ?>€
+                Total: <?php echo (isset($_SESSION['cart_total'])) ? (float)$_SESSION['cart_total'] : '0.00' ; ?>€
               </div>
 
               <div class="header-cart-buttons">
@@ -149,7 +153,11 @@
 
           <div class="header-wrapicon2">
             <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-            <span class="header-icons-noti">0</span>
+            <span class="header-icons-noti"><?php
+            if(isset($_SESSION['cart'])) {
+              echo(count($_SESSION['cart']));
+            }
+             ?></span>
 
             <!-- Header cart noti -->
             <div class="header-cart header-dropdown">
@@ -164,8 +172,8 @@
                     $req->execute(array($item['nom']));
                     $donnees = $req->fetch();                         /*Verifier les attributs bdd*/
                     echo '<li class="header-cart-item">
-                    <div class="header-cart-item-img">
-                    <img src="images/'.$donnees['ImageName'].'" alt="IMG">
+                    <div class="header-cart-item-img" onclick="javascript:clickRemove(\''.$donnees['Nom'].'\')">
+                      <img src="images/'.$donnees['ImageName'].'" alt="IMG"/>
                     </div>
 
                     <div class="header-cart-item-txt">
@@ -174,7 +182,7 @@
                     </a>
 
                     <span class="header-cart-item-info">
-                    '.$item['quantite'].' x '.$donnees['Prix'].'
+                    '.$item['quantite'].' x '.$donnees['Prix'].'€
                     </span>
                     </div>
                     </li>';
@@ -270,4 +278,18 @@
         </ul>
       </nav>
     </div>
+    <script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+      function clickRemove(nameProduct){
+          jQuery(function($) {
+              $.ajax( {
+                  url : "add_to_cart.php?remove=" + nameProduct,
+                  type : "GET",
+                  success : function(data) {
+                      swal(nameProduct, "a été retiré !", "success");
+                      }
+                  });
+              });
+      }
+    </script>
   </header>
