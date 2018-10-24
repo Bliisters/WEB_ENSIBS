@@ -165,24 +165,20 @@
 
                 <?php
                 if(isset($_SESSION['cart'])) {
-                  $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
-                  $cart = $_SESSION['cart'];
-                  $req = $bdd->prepare('SELECT * FROM users WHERE Nom = ?');
-                  foreach ($cart as $item) {
-                    $req->execute(array($item['nom']));
-                    $donnees = $req->fetch();                         /*Verifier les attributs bdd*/
+                  for ($i=0; $i < count($_SESSION['cart']); $i++) {
+                    $item = $_SESSION['cart'];
                     echo '<li class="header-cart-item">
-                    <div class="header-cart-item-img" onclick="javascript:clickRemove(\''.$donnees['Nom'].'\')">
-                      <img src="images/'.$donnees['ImageName'].'" alt="IMG"/>
+                    <div class="header-cart-item-img" onclick="javascript:clickRemove(\''.$item['nom'].'\')">
+                      <img src="images/'.$item['img'].'" alt="IMG"/>
                     </div>
 
                     <div class="header-cart-item-txt">
                     <a href="#" class="header-cart-item-name">
-                    '.$donnees['Nom'].'
+                    '.$item['nom'].'
                     </a>
 
                     <span class="header-cart-item-info">
-                    '.$item['quantite'].' x '.$donnees['Prix'].'€
+                    '.$item['quantite'].' x '.$item['prix'].'€
                     </span>
                     </div>
                     </li>';
