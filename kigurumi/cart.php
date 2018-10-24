@@ -138,9 +138,7 @@
 						Subtotal:
 					</span>
 
-					<span class="m-text21 w-size20 w-full-sm">
-						<?php echo $subtotal; ?>€
-					</span>
+					<span class="m-text21 w-size20 w-full-sm" id="subtotal"><?php echo $subtotal; ?>€</span>
 				</div>
 
 				<!--  -->
@@ -190,9 +188,7 @@
 						Total:
 					</span>
 
-					<span class="m-text21 w-size20 w-full-sm">
-						<?php echo $subtotal; ?>€
-					</span>
+					<span class="m-text21 w-size20 w-full-sm" id="total"><?php echo $subtotal; ?>€</span>
 				</div>
 
 				<div class="size15 trans-0-4">
@@ -239,6 +235,31 @@
 		$(".selection-2").select2({
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
+		});
+
+
+		$(".num-product").each(function(){
+			var nameProduct = $(this).parent().parent().parent().find(".column-2").html();
+			var thisNum = $(this);
+			$(this).on("input", function(){
+				jQuery(function($) {
+						var quantity = thisNum.val();
+						$.ajax( {
+								url : "add_to_cart.php?edit=" + nameProduct + "&q=" + quantity,
+								type : "GET",
+								success : function(data) {
+									var oldquantity = data;
+									update_entete();
+									var prix = thisNum.parent().parent().parent().find(".column-3").html();
+									prix = prix.substr(0, prix.length-1);
+									thisNum.parent().parent().parent().find(".column-5").html(prix*thisNum.val() + "€");
+									var total = $("#total").html().substr(0, $("#total").html().length-1);
+									$("#total").html(Math.round((parseFloat(total) + (thisNum.val()-oldquantity)*prix)*100)/100 + "€");
+									$("#subtotal").html($("#total").html());
+								}
+						});
+				});
+			});
 		});
 	</script>
 <!--===============================================================================================-->

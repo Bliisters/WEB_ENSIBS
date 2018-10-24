@@ -37,7 +37,7 @@ if (isset($_GET['add'])) {
                                   'quantite' => $qtity,
                                   'prix' => $donnees['Prix'],
                                   'img' => $donnees['ImageName']);
-      $_SESSION['cart_total'] = round($_SESSION['cart_total'] + $donnees['Prix'], 2);
+      $_SESSION['cart_total'] = round($_SESSION['cart_total'] + $qtity*$donnees['Prix'], 2);
     }
   }
 }
@@ -47,9 +47,10 @@ elseif (isset($_GET['remove'])) {
     if ($_SESSION['cart'][$i]['nom'] == $item)
     {
       $price = $_SESSION['cart'][$i]['prix'];
+      $quantity = $_SESSION['cart'][$i]['quantite'];
       unset($_SESSION['cart'][$i]);
       $_SESSION['cart'] = array_values($_SESSION['cart']);
-      $_SESSION['cart_total'] = round($_SESSION['cart_total'] - $price, 2);
+      $_SESSION['cart_total'] = round($_SESSION['cart_total'] - $quantity*$price, 2);
     }
   }
 }
@@ -61,10 +62,11 @@ elseif (isset($_GET['edit']) && isset($_GET['q'])) {
       if ($_SESSION['cart'][$i]['nom'] == $item)
       {
         $oldquantity = $_SESSION['cart'][$i]['quantite'];
+        echo $oldquantity;
         if($oldquantity != floatval($quantity)) {
-          $_SESSION['cart'][$i]['quantity'] = floatval($quantity);
+          $_SESSION['cart'][$i]['quantite'] = intval($quantity);
           $price = $_SESSION['cart'][$i]['prix'];
-          $_SESSION['cart_total'] = round($_SESSION['cart_total'] + $oldquantity * $price, 2);
+          $_SESSION['cart_total'] = round($_SESSION['cart_total'] + ($quantity-$oldquantity) * $price, 2);
         }
       }
     }
