@@ -78,45 +78,14 @@
 
         <div class="header-wrapicon2">
           <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-          <span class="header-icons-noti"><?php
-          if(isset($_SESSION['cart'])) {
-            echo(count($_SESSION['cart']));
-          }
-           ?></span>
+          <span class="header-icons-noti" id="entete_notif">0</span>
 
           <!-- Header cart noti -->
           <div class="header-cart header-dropdown">
-            <ul class="header-cart-wrapitem">
-              <?php
-              if(isset($_SESSION['cart'])) {
-                $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
-                $cart = $_SESSION['cart'];
-                $req = $bdd->prepare('SELECT * FROM products WHERE Nom = ?');
-                foreach ($cart as $item) {
-                  $req->execute(array($item['nom']));
-                  $donnees = $req->fetch();                         /*Verifier les attributs bdd*/
-                  echo '<li class="header-cart-item">
-                  <div class="header-cart-item-img" onclick="javascript:clickRemove(\''.$donnees['Nom'].'\')">
-                    <img src="images/'.$donnees['ImageName'].'" alt="IMG"/>
-                  </div>
+            <ul class="header-cart-wrapitem" id="entete_data">
+            </ul>
 
-                  <div class="header-cart-item-txt">
-                  <a href="#" class="header-cart-item-name">
-                  '.$donnees['Nom'].'
-                  </a>
-
-                  <span class="header-cart-item-info">
-                  '.$item['quantite'].' x '.$donnees['Prix'].'€
-                  </span>
-                  </div>
-                  </li>';
-                  $req->closeCursor();
-                }
-              }
-              ?>
-
-              <div class="header-cart-total">
-                Total: <?php echo (isset($_SESSION['cart_total'])) ? (float)$_SESSION['cart_total'] : '0.00' ; ?>€
+              <div class="header-cart-total" id="entete_total">
               </div>
 
               <div class="header-cart-buttons">
@@ -153,44 +122,14 @@
 
           <div class="header-wrapicon2">
             <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-            <span class="header-icons-noti"><?php
-            if(isset($_SESSION['cart'])) {
-              echo(count($_SESSION['cart']));
-            }
-             ?></span>
+            <span class="header-icons-noti" id="entete_notif_m">0</span>
 
             <!-- Header cart noti -->
             <div class="header-cart header-dropdown">
-              <ul class="header-cart-wrapitem">
-
-                <?php
-                if(isset($_SESSION['cart'])) {
-                  for ($i=0; $i < count($_SESSION['cart']); $i++) {
-                    $item = $_SESSION['cart'];
-                    echo '<li class="header-cart-item">
-                    <div class="header-cart-item-img" onclick="javascript:clickRemove(\''.$item['nom'].'\')">
-                      <img src="images/'.$item['img'].'" alt="IMG"/>
-                    </div>
-
-                    <div class="header-cart-item-txt">
-                    <a href="#" class="header-cart-item-name">
-                    '.$item['nom'].'
-                    </a>
-
-                    <span class="header-cart-item-info">
-                    '.$item['quantite'].' x '.$item['prix'].'€
-                    </span>
-                    </div>
-                    </li>';
-                    $req->closeCursor();
-                  }
-                }
-                ?>
-
+              <ul class="header-cart-wrapitem" id="entete_data_m">
               </ul>
 
-              <div class="header-cart-total">
-                Total: <?php echo (isset($_SESSION['cart_total'])) ? $_SESSION['cart_total'] : '0.00' ; ?>€
+              <div class="header-cart-total" id="entete_total_m">
               </div>
 
               <div class="header-cart-buttons">
@@ -286,6 +225,36 @@
                       }
                   });
               });
+          update_entete();
       }
+      function update_entete(){
+          jQuery(function($) {
+              $.ajax( {
+                  url : "entete-data.php?notif",
+                  type : "GET",
+                  success : function(data) {
+                      $('#entete_notif').html(data);
+                      $('#entete_notif_m').html(data);
+                  }
+            });
+            $.ajax( {
+                url : "entete-data.php?data",
+                type : "GET",
+                success : function(data) {
+                    $('#entete_data').html(data);
+                    $('#entete_data_m').html(data);
+                }
+          });
+          $.ajax( {
+              url : "entete-data.php?total",
+              type : "GET",
+              success : function(data) {
+                  $('#entete_total').html(data);
+                  $('#entete_total_m').html(data);
+              }
+        });
+        });
+      }
+      update_entete();
     </script>
   </header>
