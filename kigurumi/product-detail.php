@@ -415,10 +415,10 @@ $(".selection-2").select2({
 	            type : "GET",
 	            success : function(data) {
 	                swal(nameProduct, "is added to cart !", "success");
+									update_entete();
 	            }
 	        });
 	    });
-			update_entete();
 		});
 	});
 	$('.block2-btn-addwishlist').each(function(){
@@ -436,10 +436,10 @@ $(".selection-2").select2({
 	            type : "GET",
 	            success : function(data) {
 	                swal(nameProduct, "is added to cart !", "success");
+									update_entete();
 	            }
 	        });
 	    });
-			update_entete();
 		});
 	});
 </script>

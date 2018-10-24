@@ -222,10 +222,10 @@
                   type : "GET",
                   success : function(data) {
                       swal(nameProduct, "a été retiré !", "success");
+                      update_entete();
                       }
                   });
               });
-          update_entete();
       }
       function update_entete(){
           jQuery(function($) {

@@ -511,10 +511,11 @@
 								type : "GET",
 								success : function(data) {
 										swal(nameProduct, "is added to cart !", "success");
+										update_entete();
 										}
 								});
 						});
-				update_entete();
+
 			});
 		});
 

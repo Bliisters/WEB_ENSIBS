@@ -249,13 +249,13 @@
 								type : "GET",
 								success : function(data) {
 									var oldquantity = data;
-									update_entete();
 									var prix = thisNum.parent().parent().parent().find(".column-3").html();
 									prix = prix.substr(0, prix.length-1);
 									thisNum.parent().parent().parent().find(".column-5").html(prix*thisNum.val() + "€");
 									var total = $("#total").html().substr(0, $("#total").html().length-1);
 									$("#total").html(Math.round((parseFloat(total) + (thisNum.val()-oldquantity)*prix)*100)/100 + "€");
 									$("#subtotal").html($("#total").html());
+									update_entete();
 								}
 						});
 				});
