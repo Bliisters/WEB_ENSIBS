@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+  header('location: account.php');
+  exit;
+}
 if(!isset($_SESSION['cart'])) {
   $_SESSION['cart'] = array();
   $_SESSION['cart_total'] = 0.00;
