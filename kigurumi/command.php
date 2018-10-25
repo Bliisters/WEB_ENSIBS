@@ -1,9 +1,5 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-		header('location: account.php');
-		exit;
-	}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -41,7 +37,7 @@
 <body class="animsition">
 
 	<!-- Header -->
-	<?php include("entete.php"); ?>
+	<?php include("entete-command.php"); ?>
 
 	<!-- Title Page -->
 	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-kigurumi.png);">
@@ -173,7 +169,7 @@
 							</select>
 						</div>
 
-						<div class="size13 bo4 m-b-12">
+            <div class="size13 bo4 m-b-12">
             <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="nom-livrason" placeholder="Nom" required>
             </div>
 
@@ -189,7 +185,9 @@
 							<input class="sizefull s-text7 p-l-15 p-r-15" type="number" name="cp" placeholder="Code Postal" required>
 						</div>
 
-						<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="adresse" placeholder="Adresse"></textarea>
+            <div class="size13 bo4 m-b-12">
+            <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="Adresse" placeholder="Adresse" required>
+            </div>
 
 						<div class="size14 trans-0-4 m-b-10">
 							<!-- Button -->
