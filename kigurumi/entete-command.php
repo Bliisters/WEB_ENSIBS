@@ -92,29 +92,7 @@
             <img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
           </a>
 
-          <span class="linedivide2"></span>
 
-          <div class="header-wrapicon2">
-            <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-            <span class="header-icons-noti" id="entete_notif_m">0</span>
-
-            <!-- Header cart noti -->
-            <div class="header-cart header-dropdown">
-              <ul class="header-cart-wrapitem" id="entete_data_m">
-              </ul>
-
-              <div class="header-cart-total" id="entete_total_m">
-              </div>
-
-              <div class="header-cart-buttons">
-                <div class="header-cart-wrapbtn">
-                  <!-- Button -->
-                  <a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                    Panier
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
