@@ -56,13 +56,42 @@
 				<div class="col-md-6 p-b-30">
 
 						<?php
-						if(isset($_POST['name']) AND isset($_POST['phone-number']) AND isset($_POST['email'])){
-							if($_POST['name']!=null AND $_POST['phone-number']!=null AND $_POST['email']!=null)
-							{
-
-								echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
-
+						$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
+						if(isset($_SESSION["loggedin"]) AND isset($_POST['message'])){
+							if($_POST['message']!=null){
+								if(isset($_POST['destinataire']) AND $_POST['destinataire']!=null){
+									$req = $bdd->prepare('SELECT ID FROM users WHERE Mail = :mail');
+									$req->execute(array(
+										'mail' => $_POST['destinataire']));
+									$id_dest = (int)$req->fetch();
+									if($id_dest!=null){
+										$req=$bdd->prepare('INSERT INTO messagsContact (ID_envoi, ID_destination, message)
+										VALUES (:envoi,:destination,:message)');
+										$req->execute(array(
+											'envoi' => $_SESSION['ID'],
+											'destination' =>$id_dest,
+											'message' => htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8'),
+										));
+									}
+								}
+							else{
+								$req=$bdd->prepare('INSERT INTO messagsContact (ID_envoi, message)
+								VALUES (:envoi,:message)');
+								$req->execute(array(
+									'envoi' => $_SESSION['ID'],
+									'message' => htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8'),
+								));
 							}
+							echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyéééé</h4>';
+						}
+					}
+					elseif(isset($_POST['name']) AND isset($_POST['phone-number']) AND isset($_POST['email'])){
+						if($_POST['name']!=null AND $_POST['phone-number']!=null AND $_POST['email']!=null)
+						{
+
+							echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
+
+						}
 							else{
 
 								echo '
@@ -112,7 +141,7 @@
 									Envoyez nous votre message
 								</h4>';
 
-								if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === false){
+								if(!isset($_SESSION["loggedin"])){
 
 								echo'
 								<div class="bo4 of-hidden size15 m-b-20">
@@ -129,8 +158,23 @@
 
 							}
 
-							echo'
+							elseif(isset($_SESSION["loggedin"])){
+								$req = $bdd->prepare('SELECT ID FROM employees WHERE ID = :id');
+								$req->execute(array(
+								    'id' => $_SESSION['ID']));
+								$resultat = (int) $req->fetch();
+								if($_SESSION['ID'] == $resultat){
 
+									echo'
+									<div class="bo4 of-hidden size15 m-b-20">
+										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="destinataire" placeholder="Destinataire*">
+									</div>';
+								}
+							}
+							if(isset($_POST['destinataire'])){
+								echo $_POST['destinataire'];
+							}
+							echo'
 								<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message"></textarea>
 
 								<div class="w-size25">
