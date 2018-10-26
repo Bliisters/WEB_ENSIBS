@@ -116,7 +116,7 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+							<a href="product.php?type=Kigurumi" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 								Kigurumi
 							</a>
 						</div>
@@ -128,7 +128,7 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+							<a href="product.php?type=Accessoire" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 								Accessoires
 							</a>
 						</div>
@@ -142,7 +142,7 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+							<a href="product.php?type=Bonnet" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 								Bonnets
 							</a>
 						</div>
@@ -154,7 +154,7 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+							<a href="product.php?type=Kit" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 								Kits
 							</a>
 						</div>
@@ -168,7 +168,7 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+							<a href="product.php?type=Chausson" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 								Chaussons
 							</a>
 						</div>
