@@ -49,7 +49,7 @@
 			<div class="row">
 				<div class="col-md-6 p-b-30">
 					<div class="p-r-20 p-r-0-lg">
-						<div class="contact-map size21" id="google_map" data-map-x="47.644708" data-map-y="-2.748415" data-pin="images/icons/icon-position-map.png" data-scrollwhell="0" data-draggable="1"></div>
+						<div class="contact-map size21" id="google_map" data-map-x="47.644708" data-map-y="-2.748415" data-pin="images/icons/icon-position-mapKA.png" data-scrollwhell="0" data-draggable="1"></div>
 					</div>
 				</div>
 
