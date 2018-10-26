@@ -311,9 +311,14 @@ $(".selection-2").select2({
 							url : "add_to_cart.php?add=" + nameProduct,
 							type : "GET",
 							success : function(data) {
-									swal(nameProduct, "is added to cart !", "success");
-									update_entete();
+									if(data == "OK") {
+										swal(nameProduct, "is added to cart !", "success");
+										update_entete();
 									}
+									else {
+										document.location="account.php";
+									}
+								}
 							});
 					});
 		});

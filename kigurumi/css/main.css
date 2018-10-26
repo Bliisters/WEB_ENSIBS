@@ -2338,7 +2338,7 @@ body {padding-right: 0px !important;}
 input.num-product {
     -moz-appearance: textfield;
     appearance: none;
-    -webkit-appearance: none;
+    -webkit-appearance: textfield;
 }
 
 input.num-product::-webkit-outer-spin-button,

@@ -41,7 +41,7 @@
 <body class="animsition">
 
 	<!-- Header -->
-	<?php include("entete.php"); ?>
+	<?php include("entete-command.php"); ?>
 
 	<!-- Title Page -->
 	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-kigurumi.png);">
@@ -256,27 +256,59 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 
+		function update_cart(nameProduct, thisNum) {
+			jQuery(function($) {
+					var quantity = thisNum.val();
+					$.ajax( {
+							url : "add_to_cart.php?edit=" + nameProduct + "&q=" + quantity,
+							type : "GET",
+							success : function(data) {
+								var oldquantity = data;
+								var prix = thisNum.parent().parent().parent().find(".column-3").html();
+								prix = prix.substr(0, prix.length-1);
+								thisNum.parent().parent().parent().find(".column-5").html(Math.round(prix*thisNum.val()*100)/100+"€");
+								var total = $("#total").html().substr(0, $("#total").html().length-1);
+								$("#total").html(Math.round((parseFloat(total) + (thisNum.val()-oldquantity)*prix)*100)/100 + "€");
+								$("#subtotal").html($("#total").html());
+								update_entete();
+							}
+					});
+			});
+		}
 
 		$(".num-product").each(function(){
 			var nameProduct = $(this).parent().parent().parent().find(".column-2").html();
 			var thisNum = $(this);
 			$(this).on("input", function(){
-				jQuery(function($) {
-						var quantity = thisNum.val();
-						$.ajax( {
-								url : "add_to_cart.php?edit=" + nameProduct + "&q=" + quantity,
-								type : "GET",
-								success : function(data) {
-									var oldquantity = data;
-									var prix = thisNum.parent().parent().parent().find(".column-3").html();
-									prix = prix.substr(0, prix.length-1);
-									thisNum.parent().parent().parent().find(".column-5").html(prix*thisNum.val() + "€");
-									var total = $("#total").html().substr(0, $("#total").html().length-1);
-									$("#total").html(Math.round((parseFloat(total) + (thisNum.val()-oldquantity)*prix)*100)/100 + "€");
-									$("#subtotal").html($("#total").html());
-									update_entete();
-								}
-						});
+				update_cart(nameProduct, thisNum);
+			});
+		});
+
+		$(".btn-num-product-down").each(function(){
+			var nameProduct = $(this).parent().parent().parent().find(".column-2").html();
+			var thisNum = $(this).next();
+			$(this).on("click", function(){
+				update_cart(nameProduct, thisNum);
+			});
+		});
+
+		$(".btn-num-product-up").each(function(){
+			var nameProduct = $(this).parent().parent().parent().find(".column-2").html();
+			var thisNum = $(this).prev();
+			$(this).on("click", function(){
+				update_cart(nameProduct, thisNum);
+			});
+		});
+
+		$(".cart-img-product").each(function(){
+			var nameProduct = $(this).parent().parent().find(".column-2").html();
+			$(this).on("click", function(){
+				$.ajax( {
+						url : "add_to_cart.php?remove=" + nameProduct,
+						type : "GET",
+						success : function(data) {
+							location.reload();
+						}
 				});
 			});
 		});

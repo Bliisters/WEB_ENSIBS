@@ -414,8 +414,13 @@ $(".selection-2").select2({
 	            url : "add_to_cart.php?add=" + nameProduct,
 	            type : "GET",
 	            success : function(data) {
-	                swal(nameProduct, "is added to cart !", "success");
+								if(data == "OK") {
+									swal(nameProduct, "is added to cart !", "success");
 									update_entete();
+								}
+								else {
+									document.location="account.php";
+								}
 	            }
 	        });
 	    });
@@ -430,13 +435,19 @@ $(".selection-2").select2({
 	$('.btn-addcart-product-detail').each(function(){
 		var nameProduct = $('.product-detail-name').html();
 		$(this).on('click', function(){
+			var quantity = $('.num-product').val();
 			jQuery(function($) {
 	        $.ajax( {
-	            url : "add_to_cart.php?add=" + nameProduct,
+	            url : "add_to_cart.php?add=" + nameProduct + "&q=" + quantity,
 	            type : "GET",
 	            success : function(data) {
-	                swal(nameProduct, "is added to cart !", "success");
+								if(data == "OK") {
+									swal(nameProduct, "is added to cart !", "success");
 									update_entete();
+								}
+								else {
+									document.location="account.php";
+								}
 	            }
 	        });
 	    });
