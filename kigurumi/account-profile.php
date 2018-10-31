@@ -49,7 +49,11 @@
 	<section class="bgwhite p-t-66 p-b-60">
 		<div class="container">
 			<div class="row">
+
 				<div class="col-md-6 p-b-30">
+					<h4 class="m-text26 p-b-36 p-t-15">
+						Informations du Profil
+					</h4>
 					<p>
 						Nom : <?php echo $_SESSION['Nom']; ?>
 					</p>
@@ -63,6 +67,14 @@
 						}?>
 					</p>
 				</div>
+
+				<div class="col-md-6 p-b-30">
+					<div class="p-r-20 p-r-0-lg">
+						<h4 class="m-text26 p-b-36 p-t-15">
+							Historique des Commandes
+						</h4>
+				</div>
+
 			</div>
 		</div>
 	</section>

@@ -17,18 +17,11 @@ catch (Exception $e)
   die('Erreur : ' . $e->getMessage());
 }
 
-$req_detail=$bdd->prepare('INSERT INTO command-detail (ID_Commande, ID_Produit, Quantite)
+$req_detail=$bdd->prepare('INSERT INTO command_detail (ID_Commande, ID_Produit, Quantite)
 VALUES (:id_command,:id_product,:quantite)');
 
 $req_add=$bdd->prepare('INSERT INTO command (ID_Commande, ID_User, Ville, CP, Adresse, Total)
 VALUES (:id_command,:id_user,:ville,:cp,:adresse,:total)');
-
-
-
-$req_detail->execute(array(
-  'id_command' => htmlspecialchars($ID_Commande, ENT_QUOTES, 'UTF-8'),
-  'id_product' =>htmlspecialchars('10', ENT_QUOTES, 'UTF-8'),
-  'quantite' => htmlspecialchars('10', ENT_QUOTES, 'UTF-8')));
 
 $reponse = $bdd->prepare('SELECT * FROM products WHERE Nom = :nom');
 
@@ -60,6 +53,6 @@ if(isset($_SESSION['cart']))
   }
 }
 
-//header('Location: command.php')
+header('Location: command.php')
 
 ?>
