@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title>Panier</title>
+  <title>Commande</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--===============================================================================================-->
@@ -77,19 +77,7 @@ session_start();
                 </td>
                 <td class="column-2">'.$item['nom'].'</td>
                 <td class="column-3">'.$item['prix'].'€</td>
-                <td class="column-4">
-                <div class="flex-w bo5 of-hidden w-size17">
-                <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-                <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-                </button>
-
-                <input class="size8 m-text18 t-center num-product" type="number" name="num-product'.($i+1).'" value="'.$item['quantite'].'">
-
-                <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-                <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-                </button>
-                </div>
-                </td>
+                <td class="column-4">x'.$item['quantite'].'</td>
                 <td class="column-5">'.$total.'€</td>
                 </tr>';
               }
@@ -101,12 +89,31 @@ session_start();
           </table>
         </div>
       </div>
-    </section>
 
-    <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m">
-      <span data-toggle="modal" data-target="#modal-video-01">
-        <i href="" class="fa fa-play" aria-hidden="true"></i>
-        Passer la commande
+      <!-- Total -->
+      <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
+        <h5 class="m-text20 p-b-24">
+          Total Panier
+        </h5>
+
+        <!--  -->
+        <div class="flex-w flex-sb-m p-t-26 p-b-30">
+          <span class="m-text22 w-size19 w-full-sm">
+            Total:
+          </span>
+
+          <span class="m-text21 w-size20 w-full-sm" id="total"><?php echo $subtotal; ?>€</span>
+        </div>
+
+        <div class="size15 trans-0-4">
+          <!-- Button -->
+          <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" onclick="location.href='cart-confirm.php';">
+            Vérifier Panier
+          </button>
+        </div>
+      </div>
+    </div>
+
     </section>
 
 
@@ -123,21 +130,6 @@ session_start();
     <!-- Container Selection -->
     <div id="dropDownSelect1"></div>
     <div id="dropDownSelect2"></div>
-
-    <!-- Modal Video 01-->
-  	<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
-
-  		<div class="modal-dialog" role="document" data-dismiss="modal">
-  			<div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
-
-  			<div class="wrap-video-mo-01">
-  				<div class="w-full wrap-pic-w op-0-0"><img src="images/icons/video-16-9.jpg" alt="IMG"></div>
-  				<div class="video-mo-01">
-  					<iframe src="https://www.youtube.com/embed/jIPj2OST_lg?ecver=2" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
 
     <!--===============================================================================================-->
     <script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -159,6 +151,25 @@ session_start();
       dropdownParent: $('#dropDownSelect2')
     });
 
+    function update_cart(nameProduct, thisNum) {
+      jQuery(function($) {
+          var quantity = thisNum.val();
+          $.ajax( {
+              url : "add_to_cart.php?edit=" + nameProduct + "&q=" + quantity,
+              type : "GET",
+              success : function(data) {
+                var oldquantity = data;
+                var prix = thisNum.parent().parent().parent().find(".column-3").html();
+                prix = prix.substr(0, prix.length-1);
+                thisNum.parent().parent().parent().find(".column-5").html(Math.round(prix*thisNum.val()*100)/100+"€");
+                var total = $("#total").html().substr(0, $("#total").html().length-1);
+                $("#total").html(Math.round((parseFloat(total) + (thisNum.val()-oldquantity)*prix)*100)/100 + "€");
+                $("#subtotal").html($("#total").html());
+                update_entete();
+              }
+          });
+      });
+    }
 
     $(".num-product").each(function(){
       var nameProduct = $(this).parent().parent().parent().find(".column-2").html();

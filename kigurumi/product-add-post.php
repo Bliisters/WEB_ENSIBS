@@ -31,17 +31,17 @@ if(isset($_FILES['image']) AND $_FILES['image']['error'] == 0){
         'prix' => htmlspecialchars($_POST['price'], ENT_QUOTES, 'UTF-8'),
         'description' => htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8')));
 
-        header('Location: product.php');
+        header('Location: index.php');
       }
       else{
-        header('Location: index.php');
+        header('Location: product-add.php');
       }
     }
     else{
-      header('Location: about.php');
+      header('Location: product-add.php');
     }
   }
   else{
-    header('Location: cart.php');
+    header('Location: product-add.php');
   }
   ?>

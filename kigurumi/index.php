@@ -510,7 +510,7 @@
 								url : "add_to_cart.php?add=" + nameProduct,
 								type : "GET",
 								success : function(data) {
-										swal(nameProduct, "is added to cart !", "success");
+										swal(nameProduct, "ajouté au panier !", "success");
 										update_entete();
 										}
 								});
