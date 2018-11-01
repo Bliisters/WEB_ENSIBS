@@ -61,11 +61,6 @@
 						Prenom : <?php echo $_SESSION['Prenom']; ?>
 					</p>
 					<a href="logout.php"> Déconnexion </a>
-					<p>
-						<?php if(isset($_SESSION['cart'])) {
-							print_r($_SESSION['cart']);
-						}?>
-					</p>
 				</div>
 
 				<div class="col-md-6 p-b-30">
@@ -73,6 +68,28 @@
 						<h4 class="m-text26 p-b-36 p-t-15">
 							Historique des Commandes
 						</h4>
+						<?php
+
+						try
+						{
+							$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+						}
+						catch(Exception $e)
+						{
+							die('Erreur : '.$e->getMessage());
+						}
+
+						$reponse = $bdd->prepare('SELECT * FROM command WHERE ID_User LIKE :id_user');
+						$reponse->execute(array(':id_user' => $_SESSION['ID']));
+
+						while ($donnees = $reponse->fetch())
+						{
+						?>
+						<a href=command-detail.php?ID=<?php echo $donnees['ID_Commande'] ?>>Ref: <?php echo $donnees['ID_Commande'] ?> | Prix : <?php echo $donnees['Total'] ?> | Statut : <?php echo $donnees['Statut'] ?></a>
+						<?php
+						}
+						$reponse->closeCursor();
+						?>
 				</div>
 
 			</div>

@@ -1,10 +1,11 @@
 <?php
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title>Commande</title>
+  <title>Commande Detail</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--===============================================================================================-->
@@ -39,80 +40,102 @@ session_start();
   <!-- Header -->
   <?php include("entete-command.php"); ?>
 
-  <!-- Title Page -->
-  <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-kigurumi.png);">
-    <h2 class="l-text2 t-center">
-      Commande
-    </h2>
-  </section>
-
   <!-- Cart -->
   <section class="cart bgwhite p-t-70 p-b-100">
     <div class="container">
       <!-- Cart item -->
+      <div class="bo9 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
+        <h5 class="m-text20 p-b-24">
+          Informations Produits
+        </h5>
       <div class="container-table-cart pos-relative">
         <div class="wrap-table-shopping-cart bgwhite">
           <table class="table-shopping-cart">
             <tr class="table-head">
               <th class="column-1"></th>
               <th class="column-2">Produit</th>
-              <th class="column-3">Prix</th>
-              <th class="column-4 p-l-70">Quantité</th>
-              <th class="column-5">Total</th>
+              <th class="column-3 p-l-70">Quantité</th>
             </tr>
 
             <?php
-            if(isset($_SESSION['cart']))
+            if(isset($_GET['ID']))
             {
-              $subtotal = 0.00;
-              for ($i=0; $i < count($_SESSION['cart']); $i++) {
-                $item = $_SESSION['cart'][$i];
-                $total = round($item['prix']*$item['quantite'], 2);
-                $subtotal = $subtotal + $total;
+
+              try
+  						{
+  							$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+  						}
+  						catch(Exception $e)
+  						{
+  							die('Erreur : '.$e->getMessage());
+  						}
+
+              $reponse_detail = $bdd->prepare('SELECT command_detail.Quantite as Quantite, products.Nom as Nom, products.ImageName as ImageName FROM command_detail, products WHERE command_detail.ID_Commande = :id AND command_detail.ID_Produit = products.ID');
+  						$reponse_detail->execute(array(':id' => $_GET['ID']));
+
+              while ($donnees = $reponse_detail->fetch())
+  						{
+
                 echo '<tr class="table-row">
                 <td class="column-1">
                 <div class="cart-img-product b-rad-4 o-f-hidden">
-                <img src="images/'.$item['img'].'" alt="IMG-PRODUCT">
+                <img src="images/'.$donnees['ImageName'].'" alt="IMG-PRODUCT">
                 </div>
                 </td>
-                <td class="column-2">'.$item['nom'].'</td>
-                <td class="column-3">'.$item['prix'].'€</td>
-                <td class="column-4">x'.$item['quantite'].'</td>
-                <td class="column-5">'.$total.'€</td>
+                <td class="column-2">'.$donnees['Nom'].'</td>
+                <td class="column-3">x'.$donnees['Quantite'].'</td>
                 </tr>';
               }
-            }
-            else{
-              $subtotal=0.00;
+              $reponse_detail->closeCursor();
             }
             ?>
           </table>
         </div>
       </div>
+    </div>
+
+      <?php
+      $reponse_command = $bdd->prepare('SELECT * FROM command WHERE ID_Commande LIKE :id_command');
+      $reponse_command->execute(array(':id_command' => $_GET['ID']));
+
+      while ($donnees = $reponse_command->fetch())
+      {
+
+      ?>
 
       <!-- Total -->
       <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
         <h5 class="m-text20 p-b-24">
-          Total Commande
+          Informations Commande
         </h5>
 
         <!--  -->
         <div class="flex-w flex-sb-m p-t-26 p-b-30">
           <span class="m-text22 w-size19 w-full-sm">
+            Référence:
+          </span>
+
+          <span class="m-text21 w-size20 w-full-sm" id="total"><?php echo $_GET['ID']; ?></span>
+
+          <span class="m-text22 w-size19 w-full-sm">
             Total:
           </span>
 
-          <span class="m-text21 w-size20 w-full-sm" id="total"><?php echo $subtotal; ?>€</span>
-        </div>
+          <span class="m-text21 w-size20 w-full-sm" id="total"><?php echo $donnees['Total']; ?>€</span>
 
-        <div class="size15 trans-0-4">
-          <!-- Button -->
-          <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" onclick="location.href='paiement.php';">
-            Payer
-          </button>
+          <span class="m-text22 w-size19 w-full-sm">
+            Statut:
+          </span>
+
+          <span class="m-text21 w-size20 w-full-sm" id="total"><?php echo $donnees['Statut']; ?></span>
         </div>
       </div>
     </div>
+
+    <?php
+    }
+    $reponse_command->closeCursor();
+    ?>
 
     </section>
 
