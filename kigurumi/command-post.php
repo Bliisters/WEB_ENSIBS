@@ -53,6 +53,6 @@ if(isset($_SESSION['cart']))
   }
 }
 
-header('Location: command.php')
+header('Location: command-detail.php?ID='.$ID_Commande);
 
 ?>

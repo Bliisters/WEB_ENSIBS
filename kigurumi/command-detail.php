@@ -38,7 +38,7 @@ session_start();
 <body class="animsition">
 
   <!-- Header -->
-  <?php include("entete-command.php"); ?>
+  <?php include("entete.php"); ?>
 
   <!-- Cart -->
   <section class="cart bgwhite p-t-70 p-b-100">
@@ -115,19 +115,33 @@ session_start();
             Référence:
           </span>
 
-          <span class="m-text21 w-size20 w-full-sm" id="total"><?php echo $_GET['ID']; ?></span>
+          <span class="m-text21 w-size20 w-full-sm"><?php echo $_GET['ID']; ?></span>
 
           <span class="m-text22 w-size19 w-full-sm">
             Total:
           </span>
 
-          <span class="m-text21 w-size20 w-full-sm" id="total"><?php echo $donnees['Total']; ?>€</span>
+          <span class="m-text21 w-size20 w-full-sm"><?php echo $donnees['Total']; ?>€</span>
 
           <span class="m-text22 w-size19 w-full-sm">
             Statut:
           </span>
 
-          <span class="m-text21 w-size20 w-full-sm" id="total"><?php echo $donnees['Statut']; ?></span>
+          <span class="m-text21 w-size20 w-full-sm"><?php echo $donnees['Statut']; ?></span>
+
+          <?php
+
+          if($donnees['Statut']=='Non-Payée'){
+            echo'
+            <div class="size15 trans-0-4">
+            <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" onclick="location.href=\'paiement.php?ID='.$_GET['ID'].'\';">
+              Payer
+            </button>
+            </div>';
+          }
+
+          ?>
+
         </div>
       </div>
     </div>

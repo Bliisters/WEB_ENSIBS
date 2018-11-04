@@ -85,7 +85,9 @@
 						while ($donnees = $reponse->fetch())
 						{
 						?>
+						<div>
 						<a href=command-detail.php?ID=<?php echo $donnees['ID_Commande'] ?>>Ref: <?php echo $donnees['ID_Commande'] ?> | Prix : <?php echo $donnees['Total'] ?> | Statut : <?php echo $donnees['Statut'] ?></a>
+						</div>
 						<?php
 						}
 						$reponse->closeCursor();
