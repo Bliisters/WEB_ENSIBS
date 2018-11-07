@@ -5,6 +5,9 @@ if(isset($_GET['notif']))
   if(isset($_SESSION['cart'])) {
     echo count($_SESSION['cart']);
   }
+  else{
+    echo '0';
+  }
 }
 elseif(isset($_GET['data'])){
   if(isset($_SESSION['cart'])) {
