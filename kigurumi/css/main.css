@@ -2337,6 +2337,21 @@ body {padding-right: 0px !important;}
   overflow: auto;
   overflow-wrap: break-word;
 }
+.testTable{
+  width: 800px;
+  height: 100px;
+  overflow: scroll;
+  overflow-wrap: break-word;
+}
+.testTableTR{
+  width: 50px;
+  overflow: scroll;
+  overflow-wrap: break-word;
+}
+.testCSS{
+  top : 0;
+  right : 0;
+}
 
 /*[ Input NumProduct ]
 ///////////////////////////////////////////////////////////

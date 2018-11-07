@@ -56,13 +56,26 @@
 		while($donnees2 = $reponse2->fetch()){
 			echo 'Message de  ' . $donnees2['nom'] . ' , email : ' . $donnees2['adresse'] . ' , tel : ' . $donnees2['tel'] . '. Contenu : ' . $donnees2['message'] . '<br />';
 		}
-    while ($donnees = $reponse->fetch())
+		?><table ALIGN="center" CLASS="testTable">
+   <tr>
+      <th>Message de :</th>
+      <th>Message</th>
+      <th>Supprimer</th>
+   </tr>
+
+	 <?php
+		while ($donnees = $reponse->fetch())
     {
       $req->execute(array(
           'id' => $donnees['ID_envoi']));
 			$count = $req->rowCount();
 			if($count>0){
-				$resultat = $req->fetch();
+				$resultat = $req->fetch();?>
+				<tr >
+					<td ><?php echo$resultat['Type'];?></td>
+					<td ><?php echo'Lire message'?></td>
+					<td>supprimer</td>
+				</tr><?php
 	     echo 'Message de  ' . $resultat['Type'] . ' : ' . $donnees['message'] . '<br />';
 			}
 			else{
@@ -71,17 +84,30 @@
 				$count = $req2->rowCount();
 				if($count>0){
 					$resultat = $req2->fetch();
+					?>
+					<tr >
+						<td ><?php echo $resultat['Nom'] . ' ' . $resultat['Prenom'];?></td>
+						<td ><?php echo'Lire message'?></td>
+						<td>supprimer</td>
+					</tr>
+					<?php
 		     echo 'Message de  ' . $resultat['Nom'] . ' ' . $resultat['Prenom'] . ' : ' . $donnees['message'] . '<br />';
 				}
 			}
 
     }
+
+		?>
+		</table> <?php
 		$req->closeCursor();
 		$req2->closeCursor();
 		$reponse->closeCursor();
 		$reponse2->closeCursor();
       ?>
       </div>
+			<div CLASS='testCSS'>
+				<?php echo' eazeazeaziejzaijzeifjizjfiezjefzijfodzijz'?>
+			</div>
 	<!-- Footer -->
 	<?php include("pied_de_page.php"); ?>
 
