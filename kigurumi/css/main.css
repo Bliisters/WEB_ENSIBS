@@ -2330,7 +2330,13 @@ body {padding-right: 0px !important;}
   cursor: pointer;
   opacity: 1;
 }
-
+/*TEEEEST view message*/
+.mess-container{
+  width: 800px;
+  height: 600px;
+  overflow: auto;
+  overflow-wrap: break-word;
+}
 
 /*[ Input NumProduct ]
 ///////////////////////////////////////////////////////////

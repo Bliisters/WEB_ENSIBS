@@ -60,12 +60,12 @@
 						if(isset($_SESSION["loggedin"]) AND isset($_POST['message'])){
 							if($_POST['message']!=null){
 								if(isset($_POST['destinataire']) AND $_POST['destinataire']!=null){
-									$req = $bdd->prepare('SELECT ID FROM users WHERE Mail = :mail');
+									$req = $bdd->prepare('SELECT ID FROM employees WHERE Type = :type');
 									$req->execute(array(
-										'mail' => $_POST['destinataire']));
+										'type' => $_POST['destinataire']));
 									$id_dest = (int)$req->fetch();
 									if($id_dest!=null){
-										$req=$bdd->prepare('INSERT INTO messagsContact (ID_envoi, ID_destination, message)
+										$req=$bdd->prepare('INSERT INTO messagescontact (ID_envoi, ID_destination, message)
 										VALUES (:envoi,:destination,:message)');
 										$req->execute(array(
 											'envoi' => $_SESSION['ID'],
@@ -75,14 +75,14 @@
 									}
 								}
 							else{
-								$req=$bdd->prepare('INSERT INTO messagsContact (ID_envoi, message)
+								$req=$bdd->prepare('INSERT INTO messagescontact (ID_envoi, message)
 								VALUES (:envoi,:message)');
 								$req->execute(array(
 									'envoi' => $_SESSION['ID'],
 									'message' => htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8'),
 								));
 							}
-							echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyéééé</h4>';
+							echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
 						}
 					}
 					elseif(isset($_POST['name']) AND isset($_POST['phone-number']) AND isset($_POST['email'])){
@@ -166,6 +166,7 @@
 								if($_SESSION['ID'] == $resultat){
 
 									echo'
+									<p>Bonjour. Souhaitez-vous consulter <a href="view-messages.php">vos messages</a> ?</p>
 									<div class="bo4 of-hidden size15 m-b-20">
 										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="destinataire" placeholder="Destinataire*">
 									</div>';
