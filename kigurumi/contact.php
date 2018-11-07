@@ -94,7 +94,7 @@
 								'message' => htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8'),
 							));
 							echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
-
+							$req->closeCursor();
 
 						}
 							else{

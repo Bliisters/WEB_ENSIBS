@@ -51,8 +51,11 @@
 		$reponse = $bdd->query('SELECT * FROM messagescontact WHERE Type IN (SELECT Type FROM employees WHERE ID_User = ' . $_SESSION["ID"] . ') ORDER BY ID_message DESC');
     $req = $bdd->prepare('SELECT Type FROM employees WHERE ID_User = :id');
 		$req2 = $bdd->prepare('SELECT Nom,Prenom FROM users WHERE ID = :id');
+		$reponse2 = $bdd->query('SELECT * FROM messagesanon');
 
-
+		while($donnees2 = $reponse2->fetch()){
+			echo 'Message de  ' . $donnees2['nom'] . ' , email : ' . $donnees2['adresse'] . ' , tel : ' . $donnees2['tel'] . '. Contenu : ' . $donnees2['message'] . '<br />';
+		}
     while ($donnees = $reponse->fetch())
     {
       $req->execute(array(
@@ -65,7 +68,7 @@
 			else{
 				$req2->execute(array(
 	          'id' => $donnees['ID_envoi']));
-				$count = $req->rowCount();
+				$count = $req2->rowCount();
 				if($count>0){
 					$resultat = $req2->fetch();
 		     echo 'Message de  ' . $resultat['Nom'] . ' ' . $resultat['Prenom'] . ' : ' . $donnees['message'] . '<br />';
@@ -74,7 +77,9 @@
 
     }
 		$req->closeCursor();
+		$req2->closeCursor();
 		$reponse->closeCursor();
+		$reponse2->closeCursor();
       ?>
       </div>
 	<!-- Footer -->
