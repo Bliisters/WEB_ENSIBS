@@ -88,7 +88,7 @@
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="phone" name="phone-number" placeholder="Numéro de téléphone" value="'.$_POST['phone-number'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="tel" name="phone-number" placeholder="Numéro de téléphone : 0606060606" pattern="[0-9]{10}" value="'.$_POST['phone-number'].'">
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
@@ -148,7 +148,7 @@
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="phone" name="phone-number" placeholder="Numéro de téléphone" value="'.$_POST['phone-number'].'">
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="tel" name="phone-number" placeholder="Numéro de téléphone : 0606060606" pattern="[0-9]{10}" value="'.$_POST['phone-number'].'">
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
@@ -224,7 +224,7 @@
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="phone" name="phone-number" placeholder="Numéro de téléphone" value="'.$_POST['phone-number'].'">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="tel" name="phone-number" placeholder="Numéro de téléphone : 0606060606" pattern="[0-9]{10}" value="'.$_POST['phone-number'].'">
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
@@ -289,7 +289,7 @@
 							</div>
 
 							<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="phone" name="phone-number" placeholder="Numéro de téléphone">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="tel" name="phone-number" placeholder="Numéro de téléphone : 0606060606" pattern="[0-9]{10}" >
 							</div>
 
 							<div class="bo4 of-hidden size15 m-b-20">

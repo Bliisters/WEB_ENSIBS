@@ -47,11 +47,34 @@
     <div class="mess-container">
     <?php
     $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
-    $reponse = $bdd->query('SELECT * FROM messagescontact WHERE ID_destination = \'' . $_SESSION["ID"] . '\' ORDER BY ID_message DESC');
+
+		$reponse = $bdd->query('SELECT * FROM messagescontact WHERE Type IN (SELECT Type FROM employees WHERE ID_User = ' . $_SESSION["ID"] . ') ORDER BY ID_message DESC');
+    $req = $bdd->prepare('SELECT Type FROM employees WHERE ID_User = :id');
+		$req2 = $bdd->prepare('SELECT Nom,Prenom FROM users WHERE ID = :id');
+
+
     while ($donnees = $reponse->fetch())
     {
-	     echo 'Message de  ' . $donnees['ID_envoi'] . ' : ' . $donnees['message'] . '<br />';
+      $req->execute(array(
+          'id' => $donnees['ID_envoi']));
+			$count = $req->rowCount();
+			if($count>0){
+				$resultat = $req->fetch();
+	     echo 'Message de  ' . $resultat['Type'] . ' : ' . $donnees['message'] . '<br />';
+			}
+			else{
+				$req2->execute(array(
+	          'id' => $donnees['ID_envoi']));
+				$count = $req->rowCount();
+				if($count>0){
+					$resultat = $req2->fetch();
+		     echo 'Message de  ' . $resultat['Nom'] . ' ' . $resultat['Prenom'] . ' : ' . $donnees['message'] . '<br />';
+				}
+			}
+
     }
+		$req->closeCursor();
+		$reponse->closeCursor();
       ?>
       </div>
 	<!-- Footer -->
