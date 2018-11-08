@@ -27,7 +27,7 @@ if (isset($_GET['add'])) {
       if($_SESSION['cart'][$i]['nom'] == $item) {
         $found = true;
         $_SESSION['cart'][$i]['quantite'] = $_SESSION['cart'][$i]['quantite'] + $qtity;
-        $_SESSION['cart_total'] = round($_SESSION['cart_total'] + $_SESSION['cart'][$i]['prix'], 2);
+        $_SESSION['cart_total'] = round($_SESSION['cart_total'] + $_SESSION['cart'][$i]['prix']*$qtity, 2);
       }
     }
     if(!$found) {
