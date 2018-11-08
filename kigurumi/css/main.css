@@ -2348,11 +2348,14 @@ body {padding-right: 0px !important;}
   overflow: scroll;
   overflow-wrap: break-word;
 }
-.testCSS{
+.testCSSS{
   top : 0;
-  right : 0;
+  right : 10;
 }
-
+.caption {
+  caption-side: top;
+  text-align: center;
+}
 /*[ Input NumProduct ]
 ///////////////////////////////////////////////////////////
 */

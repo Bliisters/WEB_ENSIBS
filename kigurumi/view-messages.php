@@ -30,6 +30,41 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+
+function lireMess(ID)
+{
+ var ID_message=ID;
+
+ if(ID_message)
+ {
+	$.ajax({
+	type: 'post',
+	url: 'lireMess.php',
+	data: {
+	 ID_message:ID_message,
+	},
+	success: function (response) {
+	 // We get the element having id of display_message and put the response inside it
+	 $( '#display_message' ).html(response);
+	}
+	});
+ }
+
+ else
+ {
+	$( '#display_message' ).html("Please Enter Some Words");
+ }
+}
+<?php
+ function deleteMess($id){
+	 $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
+	 $bdd->query('DELETE FROM messagescontact WHERE ID_message = ' . $id . '');
+	 echo'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+ }
+?>
+</script>
 </head>
 <body class="animsition">
 
@@ -53,15 +88,37 @@
 		$req2 = $bdd->prepare('SELECT Nom,Prenom FROM users WHERE ID = :id');
 		$reponse2 = $bdd->query('SELECT * FROM messagesanon');
 
-		while($donnees2 = $reponse2->fetch()){
-			echo 'Message de  ' . $donnees2['nom'] . ' , email : ' . $donnees2['adresse'] . ' , tel : ' . $donnees2['tel'] . '. Contenu : ' . $donnees2['message'] . '<br />';
-		}
-		?><table ALIGN="center" CLASS="testTable">
-   <tr>
-      <th>Message de :</th>
-      <th>Message</th>
+	?><table ALIGN="center" CLASS="testTable">
+		<caption CLASS='caption'>Messages de non-utilisateurs</caption>
+	 	<tr>
+      <th>nom</th>
+      <th>email</th>
+      <th>téléphone</th>
+			<th>Message</th>
       <th>Supprimer</th>
-   </tr>
+   	</tr>
+
+	 <?php
+		while($donnees2 = $reponse2->fetch()){
+			?>
+			<tr >
+				<td ><?php echo$donnees2['nom'];?></td>
+				<td ><?php echo$donnees2['adresse'];?></td>
+				<td ><?php echo$donnees2['tel'];?></td>
+				<td ONCLICK='lireMess(<?php echo $donnees2['ID_message'];?>)'>Lire message</td>
+				<td ONCLICK='deleteMess(<?php echo $donnees2['ID_message'];?>)'> supprimer</td>
+			</tr>
+			<?php
+		}
+		?>
+		</table>
+		<table ALIGN="center" CLASS="testTable">
+			<caption CLASS='caption'>Messages d'utilisateurs</caption>
+   		<tr>
+      	<th>Message de :</th>
+      	<th>Message</th>
+      	<th>Supprimer</th>
+   		</tr>
 
 	 <?php
 		while ($donnees = $reponse->fetch())
@@ -73,10 +130,9 @@
 				$resultat = $req->fetch();?>
 				<tr >
 					<td ><?php echo$resultat['Type'];?></td>
-					<td ><?php echo'Lire message'?></td>
-					<td>supprimer</td>
+					<td ONCLICK='lireMess(<?php echo $donnees['ID_message'];?>)'><?php echo'Lire message'?></td>
+					<td ONCLICK='deleteMess(<?php echo $donnees['ID_message'];?>)'> supprimer</td>
 				</tr><?php
-	     echo 'Message de  ' . $resultat['Type'] . ' : ' . $donnees['message'] . '<br />';
 			}
 			else{
 				$req2->execute(array(
@@ -87,25 +143,26 @@
 					?>
 					<tr >
 						<td ><?php echo $resultat['Nom'] . ' ' . $resultat['Prenom'];?></td>
-						<td ><?php echo'Lire message'?></td>
+						<td ONCLICK='lireMess(<?php echo $donnees['ID_message'];?>)'><?php echo'Lire message'?></td>
 						<td>supprimer</td>
 					</tr>
 					<?php
-		     echo 'Message de  ' . $resultat['Nom'] . ' ' . $resultat['Prenom'] . ' : ' . $donnees['message'] . '<br />';
 				}
 			}
-
     }
 
 		?>
+
 		</table> <?php
 		$req->closeCursor();
 		$req2->closeCursor();
 		$reponse->closeCursor();
 		$reponse2->closeCursor();
       ?>
+
+
       </div>
-			<div CLASS='testCSS'>
+			<div CLASS='testCSS' id="display_message">
 				<?php echo' eazeazeaziejzaijzeifjizjfiezjefzijfodzijz'?>
 			</div>
 	<!-- Footer -->
