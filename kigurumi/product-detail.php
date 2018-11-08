@@ -93,13 +93,13 @@
 
 							<div class="item-slick3" data-thumb="images/thumb-item-02.jpg">
 								<div class="wrap-pic-w">
-									<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
+									<img src="images/image_a_venir.png" alt="IMG-PRODUCT">
 								</div>
 							</div>
 
 							<div class="item-slick3" data-thumb="images/thumb-item-03.jpg">
 								<div class="wrap-pic-w">
-									<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
+									<img src="images/image_a_venir.png" alt="IMG-PRODUCT">
 								</div>
 							</div>
 						</div>
