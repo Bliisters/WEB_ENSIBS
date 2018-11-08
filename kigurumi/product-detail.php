@@ -116,7 +116,7 @@
 					</span>
 
 					<p class="s-text8 p-t-10">
-						Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+						Des produites de qualité, pour petits et grands
 					</p>
 
 					<!--  -->
