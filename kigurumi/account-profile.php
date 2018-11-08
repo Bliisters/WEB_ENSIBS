@@ -60,6 +60,17 @@
 					<p>
 						Prenom : <?php echo $_SESSION['Prenom']; ?>
 					</p>
+					<?php
+					$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+					$req = $bdd->prepare('SELECT ID FROM employees WHERE ID_User = :id AND Type = \'Admin\'');
+					$req->execute(array(
+							'id' => $_SESSION['ID']));
+					$count = $req->rowCount();
+					if($count>0){
+						echo '<a href="product-add.php">Ajouter un produit</a><br />';
+					}
+					$req->closeCursor();
+					 ?>
 					<a href="logout.php"> Déconnexion </a>
 				</div>
 
