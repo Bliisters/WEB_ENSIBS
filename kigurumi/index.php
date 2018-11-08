@@ -470,7 +470,7 @@
 			<div class="wrap-video-mo-01">
 				<div class="w-full wrap-pic-w op-0-0"><img src="images/icons/video-16-9.jpg" alt="IMG"></div>
 				<div class="video-mo-01">
-					<iframe src="https://www.youtube.com/embed/jIPj2OST_lg?ecver=2" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+					<iframe src="https://www.youtube.com/embed?v=MlEGfGHOEMY" allowfullscreen allow="autoplay; encrypted-media"></iframe>
 				</div>
 			</div>
 		</div>
