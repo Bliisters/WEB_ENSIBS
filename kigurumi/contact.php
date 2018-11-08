@@ -60,14 +60,28 @@
 						if(isset($_SESSION["loggedin"]) AND isset($_POST['message'])){
 							if($_POST['message']!=null){
 								if(isset($_POST['destinataire']) AND $_POST['destinataire']!=null){
+									$req2 = $bdd->prepare('SELECT * FROM employees WHERE Type = :dest');
+									$req2->execute(array(
+						          'dest' => $_POST['destinataire']));
+									$bool = $req2->fetch();
+									$req2->closeCursor();
+									if($bool){
 										$req=$bdd->prepare('INSERT INTO messagescontact (ID_envoi, Type, message)
 										VALUES (:envoi,:type,:message)');
 										$req->execute(array(
 											'envoi' => $_SESSION['ID'],
 											'type' =>$_POST['destinataire'],
-											'message' => htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8'),
+											'message' => htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8')
 										));
+										$req->closeCursor();
+										echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
+									}
+									else{
+										echo '<h4 class="m-text26 p-b-36 p-t-15">Destinataire inexistant</h4>';
+									}
 								}
+
+
 							else{
 								$req=$bdd->prepare('INSERT INTO messagescontact (ID_envoi, message)
 								VALUES (:envoi,:message)');
@@ -75,9 +89,9 @@
 									'envoi' => $_SESSION['ID'],
 									'message' => htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8'),
 								));
+								$req->closeCursor();
+								echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
 							}
-							$req->closeCursor();
-							echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
 						}
 					}
 					elseif(isset($_POST['name']) AND isset($_POST['phone-number']) AND isset($_POST['email'])){
