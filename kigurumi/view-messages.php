@@ -147,7 +147,7 @@ function lireMess(ID)
 			if($count>0){
 				$resultat = $req->fetch();?>
 				<tr CLASS='tableTR'>
-					<td ><?php echo$resultat['Type'];?></td>
+					<td ><?php echo $resultat['Type'];?></td>
 					<td ONCLICK='lireMess(<?php echo $donnees['ID_message'];?>)'><?php echo'Lire message'?></td>
 					<td ONCLICK='deleteMess(<?php echo $donnees['ID_message'];?>)'> supprimer</td>
 				</tr><?php
