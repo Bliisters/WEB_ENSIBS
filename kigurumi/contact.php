@@ -89,8 +89,6 @@
 								'nom' => $_POST['name'],
 								'tel' => $_POST['phone-number'],
 								'adresse' => $_POST['email'],
-								'message' => $_POST['message'],
-
 								'message' => htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8'),
 							));
 							echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';

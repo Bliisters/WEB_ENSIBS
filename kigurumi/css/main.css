@@ -2343,14 +2343,30 @@ body {padding-right: 0px !important;}
   text-align: center;
   overflow-wrap: break-word;
 }
-.display_message{
-  width: 800px;
+.message_table{
+  display: block;
   height: 600px;
-  position: absolute;
-  top : 400;
-  right : 100;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+.mess-container{
+  display: inline-block;
+  height: 100%;
+  width: 800px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 0.01em 16px;
+}
+.display_message{
+  display: inline-block;
+  height: 100%;
+  width: 800px;
   overflow: scroll;
   overflow-wrap: break-word;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 0.01em 16px;
 }
 .caption {
   caption-side: top;

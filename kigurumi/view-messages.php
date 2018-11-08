@@ -30,7 +30,6 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-<script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 
 function lireMess(ID)
@@ -43,7 +42,8 @@ function lireMess(ID)
 	type: 'post',
 	url: 'lireMess.php',
 	data: {
-	 ID_message:ID_message,
+	 'ID_message':ID_message,
+	 'table':'messagesanon'
 	},
 	success: function (response) {
 	 // We get the element having id of display_message and put the response inside it
@@ -57,13 +57,26 @@ function lireMess(ID)
 	$( '#display_message' ).html("Please Enter Some Words");
  }
 }
-<?php
- function deleteMess($id){
-	 $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
-	 $bdd->query('DELETE FROM messagescontact WHERE ID_message = ' . $id . '');
-	 echo'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
- }
-?>
+
+ function deleteMess(ID){
+	 var ID_message=ID;
+
+	 if(ID_message)
+	 {
+		$.ajax({
+		type: 'post',
+		url: 'deleteMess.php',
+		data: {
+		 'ID_message':ID_message,
+		 'table':'messagescontact'
+		},
+		success: function (response) {
+		 location.reload();
+		}
+		});
+ 	 }
+}
+
 </script>
 </head>
 <body class="animsition">
@@ -79,6 +92,7 @@ function lireMess(ID)
 	</section>
 
 	<!-- content page -->
+	<div class="message_table">
     <div class="mess-container">
     <?php
     $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
@@ -148,7 +162,7 @@ function lireMess(ID)
 					<tr CLASS='tableTR'>
 						<td ><?php echo $resultat['Nom'] . ' ' . $resultat['Prenom'];?></td>
 						<td ONCLICK='lireMess(<?php echo $donnees['ID_message'];?>)'><?php echo'Lire message'?></td>
-						<td>supprimer</td>
+						<td ONCLICK='deleteMess(<?php echo $donnees['ID_message'];?>'>supprimer</td>
 					</tr>
 					<?php
 				}
@@ -167,9 +181,10 @@ function lireMess(ID)
 
 
       </div>
-			<div CLASS='display_message' id="display_message">
+			<div class='display_message' id="display_message">
 				<?php echo' Vos messages apparaîtront ici'?>
 			</div>
+		</div>
 	<!-- Footer -->
 	<?php include("pied_de_page.php"); ?>
 
