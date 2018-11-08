@@ -85,23 +85,19 @@
 						<div class="wrap-slick3-dots"></div>
 
 						<div class="slick3">
+							
 							<div class="item-slick3" data-thumb="images/<?php echo $donnees['ImageName']; ?>">
 								<div class="wrap-pic-w">
 									<img src="images/<?php echo $donnees['ImageName']; ?>" alt="IMG-PRODUCT">
 								</div>
 							</div>
 
-							<div class="item-slick3" data-thumb="images/thumb-item-02.jpg">
+							<div class="item-slick3" data-thumb="images/image_a_venir.png">
 								<div class="wrap-pic-w">
 									<img src="images/image_a_venir.png" alt="IMG-PRODUCT">
 								</div>
 							</div>
 
-							<div class="item-slick3" data-thumb="images/thumb-item-03.jpg">
-								<div class="wrap-pic-w">
-									<img src="images/image_a_venir.png" alt="IMG-PRODUCT">
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
