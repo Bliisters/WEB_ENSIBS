@@ -183,12 +183,16 @@
 									echo '<h4 class="m-text26 p-b-36 p-t-15">Votre compte a été créé</h4>';
 									$req=$bdd->prepare('INSERT INTO users (Civilite, Nom, Prenom, DateNaissance, Telephone, Mail, MotDePasse)
 									VALUES (:civilite,:name,:prenom,:birthday,:telephone,:email,:password)');
+									$phone=null;
+									if(isset($_post['phone-number'])){
+										$phone=htmlspecialchars($_POST['phone-number'], ENT_QUOTES, 'UTF-8');
+									}
 									$req->execute(array(
 										'civilite' => htmlspecialchars($_POST['civilite'], ENT_QUOTES, 'UTF-8'),
 										'name' =>htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8'),
 										'prenom' => htmlspecialchars($_POST['prenom'], ENT_QUOTES, 'UTF-8'),
 										'birthday' => htmlspecialchars($_POST['birthday'], ENT_QUOTES, 'UTF-8'),
-										'telephone' => htmlspecialchars($_POST['phone-number'], ENT_QUOTES, 'UTF-8'),
+										'telephone' => $phone,
 										'email' => htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8'),
 										'password' => htmlspecialchars(password_hash($_POST['password'], PASSWORD_DEFAULT), ENT_QUOTES, 'UTF-8')));
 									}

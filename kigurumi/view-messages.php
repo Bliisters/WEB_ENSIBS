@@ -86,22 +86,25 @@ function lireMess(ID)
 		$reponse = $bdd->query('SELECT * FROM messagescontact WHERE Type IN (SELECT Type FROM employees WHERE ID_User = ' . $_SESSION["ID"] . ') ORDER BY ID_message DESC');
     $req = $bdd->prepare('SELECT Type FROM employees WHERE ID_User = :id');
 		$req2 = $bdd->prepare('SELECT Nom,Prenom FROM users WHERE ID = :id');
+		$reqAnon = $bdd->query('SELECT Type FROM employees WHERE ID_User = ' . $_SESSION["ID"] . '');
+		$res=$reqAnon->fetch();
 		$reponse2 = $bdd->query('SELECT * FROM messagesanon');
+		if($res['Type']=='Admin'){
 
-	?><table ALIGN="center" CLASS="testTable">
+	?><table  CLASS="tableMess">
 		<caption CLASS='caption'>Messages de non-utilisateurs</caption>
-	 	<tr>
-      <th>nom</th>
-      <th>email</th>
-      <th>téléphone</th>
-			<th>Message</th>
-      <th>Supprimer</th>
+	 	<tr >
+      <th CLASS='tableTR'>nom</th>
+      <th CLASS='tableTR'>email</th>
+      <th CLASS='tableTR'>téléphone</th>
+			<th CLASS='tableTR'>Message</th>
+      <th CLASS='tableTR'>Suppression</th>
    	</tr>
 
 	 <?php
 		while($donnees2 = $reponse2->fetch()){
 			?>
-			<tr >
+			<tr CLASS='tableTR'>
 				<td ><?php echo$donnees2['nom'];?></td>
 				<td ><?php echo$donnees2['adresse'];?></td>
 				<td ><?php echo$donnees2['tel'];?></td>
@@ -110,14 +113,15 @@ function lireMess(ID)
 			</tr>
 			<?php
 		}
-		?>
-		</table>
-		<table ALIGN="center" CLASS="testTable">
+	}
+		?> <?php if($res['Type']=='Admin'){ ?> </table> <?php } ?>
+
+		<table CLASS="tableMess">
 			<caption CLASS='caption'>Messages d'utilisateurs</caption>
    		<tr>
-      	<th>Message de :</th>
-      	<th>Message</th>
-      	<th>Supprimer</th>
+      	<th CLASS='tableTR'>Message de :</th>
+      	<th CLASS='tableTR'>Message</th>
+      	<th CLASS='tableTR'>Suppression</th>
    		</tr>
 
 	 <?php
@@ -128,7 +132,7 @@ function lireMess(ID)
 			$count = $req->rowCount();
 			if($count>0){
 				$resultat = $req->fetch();?>
-				<tr >
+				<tr CLASS='tableTR'>
 					<td ><?php echo$resultat['Type'];?></td>
 					<td ONCLICK='lireMess(<?php echo $donnees['ID_message'];?>)'><?php echo'Lire message'?></td>
 					<td ONCLICK='deleteMess(<?php echo $donnees['ID_message'];?>)'> supprimer</td>
@@ -141,7 +145,7 @@ function lireMess(ID)
 				if($count>0){
 					$resultat = $req2->fetch();
 					?>
-					<tr >
+					<tr CLASS='tableTR'>
 						<td ><?php echo $resultat['Nom'] . ' ' . $resultat['Prenom'];?></td>
 						<td ONCLICK='lireMess(<?php echo $donnees['ID_message'];?>)'><?php echo'Lire message'?></td>
 						<td>supprimer</td>
@@ -158,12 +162,13 @@ function lireMess(ID)
 		$req2->closeCursor();
 		$reponse->closeCursor();
 		$reponse2->closeCursor();
+		$reqAnon->closeCursor();
       ?>
 
 
       </div>
-			<div CLASS='testCSS' id="display_message">
-				<?php echo' eazeazeaziejzaijzeifjizjfiezjefzijfodzijz'?>
+			<div CLASS='display_message' id="display_message">
+				<?php echo' Vos messages apparaîtront ici'?>
 			</div>
 	<!-- Footer -->
 	<?php include("pied_de_page.php"); ?>

@@ -2331,26 +2331,26 @@ body {padding-right: 0px !important;}
   opacity: 1;
 }
 /*TEEEEST view message*/
-.mess-container{
-  width: 800px;
-  height: 600px;
-  overflow: auto;
-  overflow-wrap: break-word;
-}
-.testTable{
+.tableMess{
   width: 800px;
   height: 100px;
   overflow: scroll;
   overflow-wrap: break-word;
 }
-.testTableTR{
+.tableTR{
+  height: 12px;
   width: 50px;
-  overflow: scroll;
+  text-align: center;
   overflow-wrap: break-word;
 }
-.testCSSS{
-  top : 0;
-  right : 10;
+.display_message{
+  width: 800px;
+  height: 600px;
+  position: absolute;
+  top : 400;
+  right : 100;
+  overflow: scroll;
+  overflow-wrap: break-word;
 }
 .caption {
   caption-side: top;
