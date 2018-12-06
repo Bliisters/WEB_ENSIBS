@@ -31,6 +31,22 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
+	<!-- Funtion confirmPassword -->
+	<?php function ValidatePassword($passwordVerif)
+	{
+
+		if (!preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/',$passwordVerif))
+		{
+				echo'eeee';
+				return false;
+		}
+		else
+		{
+				echo'aaaaaaaaaaaaaaaaaa';
+				return true;
+		}
+	} ?>
+
 </head>
 <body class="animsition">
 
@@ -96,11 +112,11 @@
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" value="'.$_POST['password'].'" required>
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" minlength="8" value="'.$_POST['password'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" required>
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" minlength="8" required >
 								</div>
 
 								<div style="color:red" class="m-text15 p-b-36 p-t-15">
@@ -120,7 +136,7 @@
 								</form>';
 							}
 							else{
-								if($_POST['password'] != $_POST['password-confirmation']){
+								if($_POST['password'] != $_POST['password-confirmation'] || !ValidatePassword($_POST['password'])){
 									echo'
 									<form class="leave-comment" action="account-create.php" method="post">
 									<h4 class="m-text26 p-b-36 p-t-15">
@@ -156,17 +172,26 @@
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" value="'.$_POST['password'].'" required>
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" minlength="8" required>
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-									<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" required>
-									</div>
+									<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" minlength="8" required>
+									</div>';
 
-									<div style="color:red" class="m-text15 p-b-36 p-t-15">
-									Le mot de passe et la confirmation ne sont pas identiques.
-									</div>
-
+									if($_POST['password'] != $_POST['password-confirmation']){
+										echo'
+										<div style="color:red" class="m-text15 p-b-36 p-t-15">
+										Le mot de passe et la confirmation ne sont pas identiques.
+										</div>';
+									}
+									else{
+										echo'
+										<div style="color:red" class="m-text15 p-b-36 p-t-15">
+										Le mot de passe n\'est pas assez complexe, il doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un signe special.
+										</div>';
+									}
+									echo'
 									<div class="w-size25">
 									<!-- Button -->
 									<button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" type="submit">
@@ -236,11 +261,11 @@
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" value="'.$_POST['password'].'" required>
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" minlength="8" value="'.$_POST['password'].'" required>
 								</div>
 
 								<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" required>
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" minlength="8" required>
 								</div>
 
 								<div style="color:red" class="m-text15 p-b-36 p-t-15">
@@ -301,11 +326,11 @@
 							</div>
 
 							<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" required>
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Mot de passe*" minlength="8" required>
 							</div>
 
 							<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" required>
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password-confirmation" placeholder="Mot de passe (confirmation)*" minlength="8" required>
 							</div>
 
 							<div class="w-size25">
