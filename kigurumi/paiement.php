@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || !isset($_GET['ID']) || !is_numeric($_GET['ID'])) {
+  header('location: index.php');
+  exit;
+}
+ ?>
 <!DOCTYPE html>
 <html>
 

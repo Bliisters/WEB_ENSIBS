@@ -2,16 +2,32 @@
 session_start();
 $redirect = 'account-profile.php';
 if(isset($_GET['location'])){
-	$redirect = $_GET['location'];
+	if(preg_match('@^[^/]+\.php(\?[a-zA-Z_]+=[a-zA-Z0-9]+)?$@', $_GET['location']) > 0) $redirect = $_GET['location'];
 }
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+	if(!isset($_SESSION['isadmin'])) {
+		$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '') or die();
+		$req = $bdd->prepare('SELECT ID FROM employees WHERE ID_User = :id AND Type = \'Admin\'');
+		$req->execute(array(
+				'id' => $_SESSION['ID']));
+		$count = $req->rowCount();
+		if($count>0) {
+			$_SESSION['isadmin'] = true;
+		}
+		else {
+			$_SESSION['isadmin'] = false;
+		}
+	}
 	header('location: '.$redirect);
 	exit;
 }
-//if($_SERVER['REQUEST_METHOD'] == 'post') {
+
 if(isset($_POST['email-account']) && isset($_POST['password-account']) && $_POST['email-account'] != NULL && $_POST['password-account'] != NULL){
 	$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '') or die();
 	$req = $bdd->prepare('SELECT * FROM users WHERE Mail = ?');
+
+	//CHECK email-account
+
 	$req->execute(array($_POST['email-account']));
 	$donnees = $req->fetch();
 	if(isset($donnees['ID']) && password_verify($_POST['password-account'], $donnees['MotDePasse'])){

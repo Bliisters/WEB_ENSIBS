@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php
+session_start();
+if(!isset($_GET['ID']) || !is_numeric($_GET['ID'])) {
+  header('location: index.php');
+  exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -85,7 +91,7 @@
 						<div class="wrap-slick3-dots"></div>
 
 						<div class="slick3">
-							
+
 							<div class="item-slick3" data-thumb="images/<?php echo $donnees['ImageName']; ?>">
 								<div class="wrap-pic-w">
 									<img src="images/<?php echo $donnees['ImageName']; ?>" alt="IMG-PRODUCT">
@@ -184,7 +190,7 @@
 
 		<div class="dropdown-content dis-none p-t-15 p-b-23">
 			<p class="s-text8">
-				<?php echo $donnees['Description']; ?>
+				<?php echo htmlspecialchars($donnees['Description'], ENT_QUOTES, 'UTF_8'); ?>
 			</p>
 		</div>
 	</div>

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_GET['ID']) || !is_numeric($_GET['ID'])) {
+  header('location: index.php');
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

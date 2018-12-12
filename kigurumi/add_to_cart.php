@@ -1,19 +1,20 @@
 <?php
 session_start();
+if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+  header('location: account-create.php');
+  exit;
+}
+
 if(!isset($_SESSION['cart'])) {
   $_SESSION['cart'] = array();
   $_SESSION['cart_total'] = 0.00;
 }
 if (isset($_GET['add'])) {
-  if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-    exit;
-  }
-  else {
-    echo 'OK';
-  }
   $qtity = 1;
   if(isset($_GET['q']) && is_numeric($_GET['q'])) {
     $qtity = intval($_GET['q']);
+    if($qtity < 0) exit;
+    else echo 'OK';
   }
   $item = htmlspecialchars($_GET['add'], ENT_QUOTES, 'UTF-8');
   $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');

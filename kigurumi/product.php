@@ -164,32 +164,34 @@
 							die('Erreur : '.$e->getMessage());
 						}
 
-						if(isset($_GET['type'])){
-							$reponse = $bdd->prepare('SELECT * FROM products WHERE Type LIKE :type');
+						if(isset($_GET['type']) && preg_match('/^[a-zA-Z]+$/', $_GET['type'] > 0)){
+							$reponse = $bdd->prepare('SELECT * FROM products WHERE Type = :type');
 							$reponse->execute(array(':type' => $_GET['type']));
 						}
-						elseif(isset($_GET['search-product']) AND isset($_GET['sorting'])){
-							if($_GET['sorting']=='popularity'){
-								$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom LIKE :name');
-								$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
-							}
-							elseif($_GET['sorting']=='mintomax'){
-								$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom LIKE :name ORDER BY Prix');
-								$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
-							}
-							elseif($_GET['sorting']=='maxtomin'){
-								$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom LIKE :name ORDER BY Prix DESC');
-								$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
-							}
-							else{
-								$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom LIKE :name');
-								$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
+						elseif(isset($_GET['search-product']) && preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_GET['search-product']) > 0)
+						{
+							elseif(isset($_GET['sorting'])){
+								if($_GET['sorting']=='popularity'){
+									$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom LIKE :name');
+									$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
+								}
+								elseif($_GET['sorting']=='mintomax'){
+									$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom = :name ORDER BY Prix');
+									$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
+								}
+								elseif($_GET['sorting']=='maxtomin'){
+									$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom = :name ORDER BY Prix DESC');
+									$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
+								}
+								else{
+									$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom = :name');
+									$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
+								}
 							}
 						}
 						else{
 							$reponse = $bdd->prepare('SELECT * FROM products');
 							$reponse->execute();
-
 						}
 						$number = $reponse->rowCount();
 						?>

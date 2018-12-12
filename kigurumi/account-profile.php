@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php
+session_start();
+if(!isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"]) {
+	header("location: account-create.php");
+	exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -61,15 +67,9 @@
 						Prenom : <?php echo $_SESSION['Prenom']; ?>
 					</p>
 					<?php
-					$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-					$req = $bdd->prepare('SELECT ID FROM employees WHERE ID_User = :id AND Type = \'Admin\'');
-					$req->execute(array(
-							'id' => $_SESSION['ID']));
-					$count = $req->rowCount();
-					if($count>0){
+					if(isset($_SESSION['isadmin']) && $_SESSION['isadmin']){
 						echo '<a href="product-add.php">Ajouter un produit</a><br />';
 					}
-					$req->closeCursor();
 					 ?>
 					<a href="logout.php"> Déconnexion </a>
 				</div>
@@ -90,7 +90,7 @@
 							die('Erreur : '.$e->getMessage());
 						}
 
-						$reponse = $bdd->prepare('SELECT * FROM command WHERE ID_User LIKE :id_user');
+						$reponse = $bdd->prepare('SELECT * FROM command WHERE ID_User = :id_user');
 						$reponse->execute(array(':id_user' => $_SESSION['ID']));
 
 						while ($donnees = $reponse->fetch())
