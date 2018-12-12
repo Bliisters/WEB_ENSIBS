@@ -17,7 +17,7 @@ if(isset($_FILES['image']) && $_FILES['image']['error'] == 0 && preg_match('/^[^
         exit;
       }
 
-      if(preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_POST['name']) == 0 || preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_POST['type']) == 0) {
+      if(!preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_POST['name']) || !preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_POST['type'])) {
         header('location: product-add.php');
         exit;
       }

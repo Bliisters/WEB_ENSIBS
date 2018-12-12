@@ -2,7 +2,7 @@
 session_start();
 $redirect = 'account-profile.php';
 if(isset($_GET['location'])){
-	if(preg_match('@^[^/]+\.php(\?[a-zA-Z_]+=[a-zA-Z0-9]+)?$@', $_GET['location']) > 0) $redirect = $_GET['location'];
+	if(preg_match('@^[^/]+\.php(\?[a-zA-Z_]+=[a-zA-Z0-9]+)?$@', $_GET['location'])) $redirect = $_GET['location'];
 }
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	if(!isset($_SESSION['isadmin'])) {

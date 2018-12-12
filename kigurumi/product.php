@@ -164,11 +164,11 @@
 							die('Erreur : '.$e->getMessage());
 						}
 
-						if(isset($_GET['type']) && preg_match('/^[a-zA-Z]+$/', $_GET['type'] > 0)){
+						if(isset($_GET['type']) && preg_match('/^[a-zA-Z]+$/', $_GET['type'])){
 							$reponse = $bdd->prepare('SELECT * FROM products WHERE Type = :type');
 							$reponse->execute(array(':type' => $_GET['type']));
 						}
-						elseif(isset($_GET['search-product']) && preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_GET['search-product']) > 0)
+						elseif(isset($_GET['search-product']) && preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_GET['search-product'])
 						{
 							elseif(isset($_GET['sorting'])){
 								if($_GET['sorting']=='popularity'){

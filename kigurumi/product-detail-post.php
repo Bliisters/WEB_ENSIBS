@@ -3,7 +3,7 @@ if(!isset($_POST['id-product']) || !is_numeric($_POST['id-product']) || !isset($
   header('location: index.php');
   exit;
 }
-if(preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_POST['title']) == 0) {
+if(!preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_POST['title'])) {
   header('location: index.php');
   exit;
 }
