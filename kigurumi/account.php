@@ -36,6 +36,16 @@ if(isset($_POST['email-account']) && isset($_POST['password-account']) && $_POST
 		$_SESSION['Nom'] = $donnees['Nom'];
 		$_SESSION['Prenom'] = $donnees['Prenom'];
 		$_SESSION['ID'] = $donnees['ID'];
+		$req = $bdd->prepare('SELECT ID FROM employees WHERE ID_User = :id AND Type = \'Admin\'');
+		$req->execute(array(
+				'id' => $_SESSION['ID']));
+		$count = $req->rowCount();
+		if($count>0) {
+			$_SESSION['isadmin'] = true;
+		}
+		else {
+			$_SESSION['isadmin'] = false;
+		}
 		header('location: '.$redirect);
 		exit;
 	}
