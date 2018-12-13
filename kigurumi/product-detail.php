@@ -255,7 +255,7 @@ if(!isset($_GET['ID']) || !is_numeric($_GET['ID'])) {
 
 					<b><?php echo $donnees2['Titre']; ?></b>
 					<br>
-					<?php echo $donnees2['Commentaire']; ?>
+					<?php echo htmlspecialchars($donnees2['Commentaire'], ENT_QUOTES, 'UTF_8'); ?>
 					<br>
 					<i><?php echo $donnees2['Prenom']; ?></i>
 					<br>

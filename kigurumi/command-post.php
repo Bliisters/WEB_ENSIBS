@@ -52,9 +52,9 @@ if(isset($_SESSION['cart']))
         $reponse->closeCursor();
 
         $req_detail->execute(array(
-          'id_command' => htmlspecialchars($ID_Commande, ENT_QUOTES, 'UTF-8'),
-          'id_product' =>htmlspecialchars($ID_Produit, ENT_QUOTES, 'UTF-8'),
-          'quantite' => htmlspecialchars($item['quantite'], ENT_QUOTES, 'UTF-8')));
+          'id_command' => $ID_Commande,
+          'id_product' => $ID_Produit,
+          'quantite' => $item['quantite']));
       }
     }
     else {

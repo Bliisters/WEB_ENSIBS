@@ -30,7 +30,7 @@ if( isset( $_POST['ID_message'] ) && is_numeric($_POST['ID_message']) )
   $reponse = $bdd->query('SELECT message FROM '. $_POST['table'] .' WHERE ID_message = ' . $id . '');
   while ($donnees = $reponse->fetch())
   {
-    echo "<p>" . htmlspecialchars($donnees['message'], ENT_QUOTES, 'UTF-8') . "</p>";
+    echo "<p>" . htmlspecialchars($donnees['message'], ENT_QUOTES, 'UTF_8') . "</p>";
   }
 
 }

@@ -71,7 +71,7 @@
 										$req->execute(array(
 											'envoi' => $_SESSION['ID'],
 											'type' =>$bdd->quote($_POST['destinataire']),
-											'message' => $bdd->quote($_POST['message'], ENT_QUOTES, 'UTF-8')
+											'message' => $bdd->quote($_POST['message'], ENT_QUOTES, 'UTF_8')
 										));
 										$req->closeCursor();
 										echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
@@ -87,7 +87,7 @@
 								VALUES (:envoi,:message)');
 								$req->execute(array(
 									'envoi' => $_SESSION['ID'],
-									'message' => $bdd->quote($_POST['message'], ENT_QUOTES, 'UTF-8'),
+									'message' => $bdd->quote($_POST['message'], ENT_QUOTES, 'UTF_8'),
 								));
 								$req->closeCursor();
 								echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';

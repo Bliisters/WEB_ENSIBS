@@ -210,16 +210,16 @@
 									VALUES (:civilite,:name,:prenom,:birthday,:telephone,:email,:password)');
 									$phone=null;
 									if(isset($_post['phone-number'])){
-										$phone=htmlspecialchars($_POST['phone-number'], ENT_QUOTES, 'UTF-8');
+										$phone=htmlspecialchars($_POST['phone-number'], ENT_QUOTES, 'UTF_8');
 									}
 									$req->execute(array(
-										'civilite' => htmlspecialchars($_POST['civilite'], ENT_QUOTES, 'UTF-8'),
-										'name' =>htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8'),
-										'prenom' => htmlspecialchars($_POST['prenom'], ENT_QUOTES, 'UTF-8'),
-										'birthday' => htmlspecialchars($_POST['birthday'], ENT_QUOTES, 'UTF-8'),
+										'civilite' => htmlspecialchars($_POST['civilite'], ENT_QUOTES, 'UTF_8'),
+										'name' =>htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF_8'),
+										'prenom' => htmlspecialchars($_POST['prenom'], ENT_QUOTES, 'UTF_8'),
+										'birthday' => htmlspecialchars($_POST['birthday'], ENT_QUOTES, 'UTF_8'),
 										'telephone' => $phone,
-										'email' => htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8'),
-										'password' => htmlspecialchars(password_hash($_POST['password'], PASSWORD_DEFAULT), ENT_QUOTES, 'UTF-8')));
+										'email' => htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF_8'),
+										'password' => htmlspecialchars(password_hash($_POST['password'], PASSWORD_DEFAULT), ENT_QUOTES, 'UTF_8')));
 									}
 								}
 								$req->closeCursor();

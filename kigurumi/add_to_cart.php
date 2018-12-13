@@ -16,7 +16,7 @@ if (isset($_GET['add'])) {
     if($qtity < 0) exit;
     else echo 'OK';
   }
-  $item = htmlspecialchars($_GET['add'], ENT_QUOTES, 'UTF-8');
+  $item = htmlspecialchars($_GET['add'], ENT_QUOTES, 'UTF_8');
   $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
   $req = $bdd->prepare('SELECT COUNT(Nom) FROM products WHERE Nom=?');
   $req->execute(array($item));
@@ -45,7 +45,7 @@ if (isset($_GET['add'])) {
   }
 }
 elseif (isset($_GET['remove'])) {
-  $item = htmlspecialchars($_GET['remove'], ENT_QUOTES, 'UTF-8');
+  $item = htmlspecialchars($_GET['remove'], ENT_QUOTES, 'UTF_8');
   for ($i=0; $i < count($_SESSION['cart']); $i++) {
     if ($_SESSION['cart'][$i]['nom'] == $item)
     {
@@ -58,8 +58,8 @@ elseif (isset($_GET['remove'])) {
   }
 }
 elseif (isset($_GET['edit']) && isset($_GET['q'])) {
-  $item = htmlspecialchars($_GET['edit'], ENT_QUOTES, 'UTF-8');
-  $quantity = htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8');
+  $item = htmlspecialchars($_GET['edit'], ENT_QUOTES, 'UTF_8');
+  $quantity = htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF_8');
   if(is_numeric($quantity)) {
     for ($i=0; $i < count($_SESSION['cart']); $i++) {
       if ($_SESSION['cart'][$i]['nom'] == $item)
