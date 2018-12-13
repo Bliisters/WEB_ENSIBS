@@ -36,7 +36,7 @@ if(isset($_POST['email-account']) && isset($_POST['password-account']) && $_POST
 		$log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
 		+ "account.php not an email address" + "\n";
 		file_put_contents('logs/access.log', $log, FILE_APPEND);
-		$error = true; //pas une erreur de compte mais d'email
+		//afficher une erreur ?
 	}
 	else {
 		$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '') or die();
