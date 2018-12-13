@@ -1,8 +1,22 @@
 <?php
 session_start();
-if(!isset($_SESSION['ID']) || !is_numeric($_SESSION['ID'])) {
+
+if(!isset($_SESSION['ID']) || !is_numeric($_SESSION['ID']) ) {
   header('location: index.php');
   exit;
+}
+else{
+  $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
+  $req = $bdd->prepare('SELECT ID FROM employees WHERE ID_User = :id');
+  $req->execute(array(
+      'id' => $_SESSION['ID']));
+  $count = $req->rowCount();
+  if(!($count>0)){
+    header('location: index.php');
+    exit;
+  }
+  $req->closeCursor();
+
 }
 ?>
 
@@ -51,17 +65,31 @@ function lireMess(ID)
 	url: 'lireMess.php',
 	data: {
 	 'ID_message':ID_message,
-	 'table':'messagesanon'
+	 'table':'messagescontact'
 	},
 	success: function (response) {
 	 $( '#display_message' ).html(response);
 	}
 	});
  }
+}
+function lireMessAnon(ID)
+{
+ var ID_message=ID;
 
- else
+ if(ID_message)
  {
-	$( '#display_message' ).html("Please Enter Some Words");
+	$.ajax({
+	type: 'post',
+	url: 'lireMess.php',
+	data: {
+	 'ID_message':ID_message,
+	 'table':'messagesanon'
+	},
+	success: function (response) {
+	 $( '#display_message' ).html(response);
+	}
+	});
  }
 }
 
@@ -82,6 +110,24 @@ function lireMess(ID)
 		}
 		});
  	 }
+}
+function deleteMessAnon(ID){
+  var ID_message=ID;
+
+  if(ID_message)
+  {
+   $.ajax({
+   type: 'post',
+   url: 'deleteMess.php',
+   data: {
+    'ID_message':ID_message,
+    'table':'messagesanon'
+   },
+   success: function (response) {
+    location.reload();
+   }
+   });
+  }
 }
 
 </script>
@@ -129,8 +175,8 @@ function lireMess(ID)
 				<td ><?php echo$donnees2['nom'];?></td>
 				<td ><?php echo$donnees2['adresse'];?></td>
 				<td ><?php echo$donnees2['tel'];?></td>
-				<td ONCLICK='lireMess(<?php echo $donnees2['ID_message'];?>)'>Lire message</td>
-				<td ONCLICK='deleteMess(<?php echo $donnees2['ID_message'];?>)'> supprimer</td>
+				<td ONCLICK='lireMessAnon(<?php echo $donnees2['ID_message'];?>)'>Lire message</td>
+				<td ONCLICK='deleteMessAnon(<?php echo $donnees2['ID_message'];?>)'> supprimer</td>
 			</tr>
 			<?php
 		}
