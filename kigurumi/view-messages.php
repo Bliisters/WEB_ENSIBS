@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_GET['ID']) || !is_numeric($_GET['ID'])) {
+if(!isset($_SESSION['ID']) || !is_numeric($_SESSION['ID'])) {
   header('location: index.php');
   exit;
 }
@@ -54,7 +54,6 @@ function lireMess(ID)
 	 'table':'messagesanon'
 	},
 	success: function (response) {
-	 // We get the element having id of display_message and put the response inside it
 	 $( '#display_message' ).html(response);
 	}
 	});
