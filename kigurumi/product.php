@@ -168,9 +168,9 @@
 							$reponse = $bdd->prepare('SELECT * FROM products WHERE Type = :type');
 							$reponse->execute(array(':type' => $_GET['type']));
 						}
-						elseif(isset($_GET['search-product']) && preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_GET['search-product'])
+						elseif(isset($_GET['search-product']) && preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_GET['search-product']))
 						{
-							elseif(isset($_GET['sorting'])){
+							if(isset($_GET['sorting'])){
 								if($_GET['sorting']=='popularity'){
 									$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom LIKE :name');
 									$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
