@@ -1,5 +1,9 @@
 <?php
 if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'] || !isset($_SESSION['isadmin']) || !$_SESSION['isadmin']) {
+  $date = getdate();
+  $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+  + "product-add-post.php unauthorized access" + "\n";
+  file_put_contents('logs/access.log', $log, FILE_APPEND);
   header('location: account-create.php');
   exit;
 }
@@ -12,12 +16,21 @@ if(isset($_FILES['image']) && $_FILES['image']['error'] == 0 && preg_match('/^[^
       move_uploaded_file($_FILES['image']['tmp_name'], 'images/' . basename($_FILES['image']['name']));
 
 
-      if(!isset($_POST['name']) || !isset($_POST['type']) || !isset($_POST['number']) || !i_numeric($_POST['number']) || !isset($_POST['price']) || !is_numeric($_POST['number']) || !isset($_POST['description'])) {
+      if(!isset($_POST['name']) || !isset($_POST['type']) || !isset($_POST['number']) || !is_numeric($_POST['number']) || !isset($_POST['price']) || !is_numeric($_POST['number']) || !isset($_POST['description'])) {
+        $date = getdate();
+        $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+        + "product-add-post.php wrong arguments: name=" + (isset($_POST['name'])) ? $_POST['name'] : "" + "    type=" + (isset($_POST['type'])) ? $_POST['type'] : "" +
+        "    number=" + (isset($_POST['number'])) ? $_POST['number'] : "" + "    price=" + (isset($_POST['price'])) ? $_POST['price'] : "" + (!isset($_POST['description'])) ? "    no description" : "" + "\n";
+        file_put_contents('logs/access.log', $log, FILE_APPEND);
         header('location: product-add.php');
         exit;
       }
 
       if(!preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_POST['name']) || !preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_POST['type'])) {
+        $date = getdate();
+        $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+        + "product-add-post.php wrong arguments: name=" + $_POST['name'] + "    type=" + $_POST['type'] + "\n";
+        file_put_contents('logs/access.log', $log, FILE_APPEND);
         header('location: product-add.php');
         exit;
       }

@@ -1,6 +1,10 @@
 <?php
 session_start();
 if(!isset($_SESSION['ID']) || !is_numeric($_SESSION['ID'])) {
+  $date = getdate();
+  $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+  + "view-messages.php unauthorized access" + "\n";
+  file_put_contents('logs/access.log', $log, FILE_APPEND);
   header('location: index.php');
   exit;
 }

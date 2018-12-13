@@ -1,6 +1,10 @@
 <?php
 session_start();
 if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+  $date = getdate();
+  $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+  + "command-detail.php unauthorized access" + "\n";
+  file_put_contents('logs/access.log', $log, FILE_APPEND);
   header('location: account-create.php');
   exit;
 }
@@ -62,7 +66,7 @@ if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
             </tr>
 
             <?php
-            if(isset($_GET['ID']))
+            if(isset($_GET['ID']) && is_numeric($_GET['ID']))
             {
 
               try
@@ -91,6 +95,12 @@ if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
                 </tr>';
               }
               $reponse_detail->closeCursor();
+            }
+            else {
+              $date = getdate();
+          		$log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+          		+ "command-detail.php error id: " + (isset($_GET['ID'])) ? $_GET['ID'] : "no id" + "\n";
+          		file_put_contents('logs/access.log', $log, FILE_APPEND);
             }
             ?>
           </table>
