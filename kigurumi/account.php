@@ -2,7 +2,15 @@
 session_start();
 $redirect = 'account-profile.php';
 if(isset($_GET['location'])){
-	if(preg_match('@^[^/]+\.php(\?[a-zA-Z_]+=[a-zA-Z0-9]+)?$@', $_GET['location'])) $redirect = $_GET['location'];
+	if(preg_match('@^[^/]+\.php(\?[a-zA-Z_]+=[a-zA-Z0-9]+)?$@', $_GET['location'])) {
+		$redirect = $_GET['location'];
+	}
+	else {
+		$date = getdate();
+		$log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+		+ "account.php wrong location: " + $_GET['location'] + "\n";
+		file_put_contents('logs/access.log', $log, FILE_APPEND);
+	}
 }
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	if(!isset($_SESSION['isadmin'])) {
@@ -23,34 +31,41 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 }
 
 if(isset($_POST['email-account']) && isset($_POST['password-account']) && $_POST['email-account'] != NULL && $_POST['password-account'] != NULL){
-	$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '') or die();
-	$req = $bdd->prepare('SELECT * FROM users WHERE Mail = ?');
-
-	//CHECK email-account
-
-	$req->execute(array($_POST['email-account']));
-	$donnees = $req->fetch();
-	if(isset($donnees['ID']) && password_verify($_POST['password-account'], $donnees['MotDePasse'])){
-		session_start();
-		$_SESSION['loggedin'] = true;
-		$_SESSION['Nom'] = $donnees['Nom'];
-		$_SESSION['Prenom'] = $donnees['Prenom'];
-		$_SESSION['ID'] = $donnees['ID'];
-		$req = $bdd->prepare('SELECT ID FROM employees WHERE ID_User = :id AND Type = \'Admin\'');
-		$req->execute(array(
-				'id' => $_SESSION['ID']));
-		$count = $req->rowCount();
-		if($count>0) {
-			$_SESSION['isadmin'] = true;
-		}
-		else {
-			$_SESSION['isadmin'] = false;
-		}
-		header('location: '.$redirect);
-		exit;
+	if(!filter_var($_POST['email-account'], FILTER_VALIDATE_EMAIL)) {
+		$date = getdate();
+		$log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+		+ "account.php not an email address" + "\n";
+		file_put_contents('logs/access.log', $log, FILE_APPEND);
+		$error = true; //pas une erreur de compte mais d'email
 	}
-	else{
-		$error = true;
+	else {
+		$bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '') or die();
+		$req = $bdd->prepare('SELECT * FROM users WHERE Mail = ?');
+
+		$req->execute(array($_POST['email-account']));
+		$donnees = $req->fetch();
+		if(isset($donnees['ID']) && password_verify($_POST['password-account'], $donnees['MotDePasse'])){
+			session_start();
+			$_SESSION['loggedin'] = true;
+			$_SESSION['Nom'] = $donnees['Nom'];
+			$_SESSION['Prenom'] = $donnees['Prenom'];
+			$_SESSION['ID'] = $donnees['ID'];
+			$req = $bdd->prepare('SELECT ID FROM employees WHERE ID_User = :id AND Type = \'Admin\'');
+			$req->execute(array(
+					'id' => $_SESSION['ID']));
+			$count = $req->rowCount();
+			if($count>0) {
+				$_SESSION['isadmin'] = true;
+			}
+			else {
+				$_SESSION['isadmin'] = false;
+			}
+			header('location: '.$redirect);
+			exit;
+		}
+		else{
+			$error = true;
+		}
 	}
 }
 //}

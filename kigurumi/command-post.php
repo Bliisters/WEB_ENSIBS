@@ -2,6 +2,10 @@
 
 session_start();
 if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
+  $date = getdate();
+  $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+  + "command-post.php unauthorized access" + "\n";
+  file_put_contents('logs/access.log', $log, FILE_APPEND);
   header('location: account-create.php');
   exit;
 }
@@ -27,29 +31,44 @@ $reponse = $bdd->prepare('SELECT * FROM products WHERE Nom = :nom');
 
 if(isset($_SESSION['cart']))
 {
+  if(isset($_POST['cp']) && isset($_POST['adresse']) && isset($_POST['ville'])) {
+    if(is_numeric($_POST['cp']) && preg_match('/^[a-z0-9\- ]+$/i', $_POST['adresse']) && preg_match('@^[a-z\-/ ]+$@i', $_POST['ville'])) {
+      $req_add->execute(array(
+      'id_command' => $ID_Commande,
+      'id_user' =>$_SESSION['ID'],
+      'ville' => $_POST['ville'],
+      'cp' => $_POST['cp'],
+      'adresse' => $_POST['adresse'],
+      'total' => $_SESSION['cart_total']));
 
-  $req_add->execute(array(
-    'id_command' => htmlspecialchars($ID_Commande, ENT_QUOTES, 'UTF-8'),
-    'id_user' =>htmlspecialchars($_SESSION['ID'], ENT_QUOTES, 'UTF-8'),
-    'ville' => htmlspecialchars($_POST['ville'], ENT_QUOTES, 'UTF-8'),
-    'cp' => htmlspecialchars($_POST['cp'], ENT_QUOTES, 'UTF-8'),
-    'adresse' => htmlspecialchars($_POST['adresse'], ENT_QUOTES, 'UTF-8'),
-    'total' => htmlspecialchars($_SESSION['cart_total'], ENT_QUOTES, 'UTF-8')));
+      for ($i=0; $i < count($_SESSION['cart']); $i++) {
+        $item = $_SESSION['cart'][$i];
 
-  for ($i=0; $i < count($_SESSION['cart']); $i++) {
-    $item = $_SESSION['cart'][$i];
+        $reponse->execute(array(':nom' => $item['nom']));
+        while ($donnees = $reponse->fetch())
+      	{
+          $ID_Produit=$donnees['ID'];
+        }
+        $reponse->closeCursor();
 
-    $reponse->execute(array(':nom' => $item['nom']));
-    while ($donnees = $reponse->fetch())
-  	{
-      $ID_Produit=$donnees['ID'];
+        $req_detail->execute(array(
+          'id_command' => htmlspecialchars($ID_Commande, ENT_QUOTES, 'UTF-8'),
+          'id_product' =>htmlspecialchars($ID_Produit, ENT_QUOTES, 'UTF-8'),
+          'quantite' => htmlspecialchars($item['quantite'], ENT_QUOTES, 'UTF-8')));
+      }
     }
-    $reponse->closeCursor();
-
-    $req_detail->execute(array(
-      'id_command' => htmlspecialchars($ID_Commande, ENT_QUOTES, 'UTF-8'),
-      'id_product' =>htmlspecialchars($ID_Produit, ENT_QUOTES, 'UTF-8'),
-      'quantite' => htmlspecialchars($item['quantite'], ENT_QUOTES, 'UTF-8')));
+    else {
+      $date = getdate();
+  		$log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+  		+ "command-post.php wrong arguments: cp=" + $_POST['cp'] + "    adresse=" + $_POST['adresse'] + "    ville=" + $_POST['ville'] +"\n";
+  		file_put_contents('logs/access.log', $log, FILE_APPEND);
+    }
+  }
+  else {
+    $date = getdate();
+		$log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+		+ "command-post.php no cp or adresse or ville" + "\n";
+		file_put_contents('logs/access.log', $log, FILE_APPEND);
   }
 }
 

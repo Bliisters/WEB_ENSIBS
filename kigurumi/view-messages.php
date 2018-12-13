@@ -1,7 +1,15 @@
 <?php
 session_start();
+<<<<<<< HEAD
 
 if(!isset($_SESSION['ID']) || !is_numeric($_SESSION['ID']) ) {
+=======
+if(!isset($_SESSION['ID']) || !is_numeric($_SESSION['ID'])) {
+  $date = getdate();
+  $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+  + "view-messages.php unauthorized access" + "\n";
+  file_put_contents('logs/access.log', $log, FILE_APPEND);
+>>>>>>> 3e753113beb52ff308845d3e1903710c450d3677
   header('location: index.php');
   exit;
 }

@@ -168,9 +168,9 @@
 							$reponse = $bdd->prepare('SELECT * FROM products WHERE Type = :type');
 							$reponse->execute(array(':type' => $_GET['type']));
 						}
-						elseif(isset($_GET['search-product']) && preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_GET['search-product'])
+						elseif(isset($_GET['search-product']) && preg_match('/^([a-zA-Z0-9\-]+\040?)+$/', $_GET['search-product']))
 						{
-							elseif(isset($_GET['sorting'])){
+							if(isset($_GET['sorting'])){
 								if($_GET['sorting']=='popularity'){
 									$reponse = $bdd->prepare('SELECT * FROM products WHERE Nom LIKE :name');
 									$reponse->execute(array(':name' => '%'.$_GET['search-product'].'%'));
@@ -190,6 +190,18 @@
 							}
 						}
 						else{
+							if(isset($_GET['type'])) {
+								$date = getdate();
+							  $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+							  + "product.php wrong type: " + $_GET['type'] + "\n";
+							  file_put_contents('logs/access.log', $log, FILE_APPEND);
+							}
+							if(isset($_GET['search-product'])) {
+								$date = getdate();
+							  $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
+							  + "product.php wrong search-product: " + $_GET['search-product'] + "\n";
+							  file_put_contents('logs/access.log', $log, FILE_APPEND);
+							}
 							$reponse = $bdd->prepare('SELECT * FROM products');
 							$reponse->execute();
 						}
