@@ -8,7 +8,7 @@ if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
   header('location: index.php');
   exit;
 }
-<<<<<<< HEAD
+
 else{
   $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
   $req = $bdd->prepare('SELECT ID FROM employees WHERE ID_User = :id AND Type= "Admin"');
@@ -22,11 +22,8 @@ else{
   $req->closeCursor();
   
 }
-if(isset($_POST['ID_message']) && is_numeric($_POST['ID_message']) && isset($_POST['table']) && preg_match('/^[a-zA-Z]+$/', $_POST['table'])) {
-=======
 
 if(isset($_POST['ID_message']) && is_numeric($_POST['ID_message']) && isset($_POST['table']) && preg_match('/^[a-zA-Z_]+$/', $_POST['table'])) {
->>>>>>> 3e753113beb52ff308845d3e1903710c450d3677
   $bdd = new PDO('mysql:host=localhost;dbname=kigurumi;charset=utf8', 'root', '');
   $bdd->query('DELETE FROM ' . $_POST['table'] . ' WHERE ID_message = ' . $_POST['ID_message']);
 }

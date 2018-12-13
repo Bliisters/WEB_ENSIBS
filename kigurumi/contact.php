@@ -70,8 +70,8 @@
 										VALUES (:envoi,:type,:message)');
 										$req->execute(array(
 											'envoi' => $_SESSION['ID'],
-											'type' =>htmlentities($_POST['destinataire']),
-											'message' => htmlentities($_POST['message'], ENT_QUOTES, 'UTF-8')
+											'type' =>$bdd->quote($_POST['destinataire']),
+											'message' => $bdd->quote($_POST['message'], ENT_QUOTES, 'UTF-8')
 										));
 										$req->closeCursor();
 										echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
@@ -87,7 +87,7 @@
 								VALUES (:envoi,:message)');
 								$req->execute(array(
 									'envoi' => $_SESSION['ID'],
-									'message' => htmlentities($_POST['message'], ENT_QUOTES, 'UTF-8'),
+									'message' => $bdd->quote($_POST['message'], ENT_QUOTES, 'UTF-8'),
 								));
 								$req->closeCursor();
 								echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
@@ -100,10 +100,10 @@
 							$req=$bdd->prepare('INSERT INTO messagesanon (nom, tel, message, adresse)
 							VALUES (:nom,:tel,:message, :adresse)');
 							$req->execute(array(
-								'nom' => htmlentities($_POST['name']),
-								'tel' => htmlentities($_POST['phone-number']),
-								'message' => htmlentities($_POST['message']),
-								'adresse' => htmlentities($_POST['email'])
+								'nom' => $bdd->quote($_POST['name']),
+								'tel' => $bdd->quote($_POST['phone-number']),
+								'message' => $bdd->quote($_POST['message']),
+								'adresse' => $bdd->quote($_POST['email'])
 							));
 							echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
 							$req->closeCursor();
@@ -118,19 +118,19 @@
 									</h4>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom complet*" value="'.htmlentities($_POST['name']).'">
+										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Nom complet*" value="'.$bdd->quote($_POST['name']).'">
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Numéro de téléphone : 0606060606" pattern="[0-9]{10}" value="'.htmlentities($_POST['phone-number']).'">
+										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Numéro de téléphone : 0606060606" pattern="[0-9]{10}" value="'.$bdd->quote($_POST['phone-number']).'">
 									</div>
 
 									<div class="bo4 of-hidden size15 m-b-20">
-										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Adresse mail*" value="'.htmlentities($_POST['email']).'">
+										<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Adresse mail*" value="'.$bdd->quote($_POST['email']).'">
 									</div>
 
 									<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message">
-										'.htmlentities($_POST['message']).'
+										'.$bdd->quote($_POST['message']).'
 									</textarea>
 
 									<div style="color:red" class="m-text15 p-b-36 p-t-15">
@@ -189,7 +189,7 @@
 								}
 							}
 							if(isset($_POST['destinataire'])){
-								echo htmlentities($_POST['destinataire']);
+								echo $bdd->quote($_POST['destinataire']);
 							}
 							echo'
 								<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message"></textarea>
