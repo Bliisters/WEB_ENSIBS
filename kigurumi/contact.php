@@ -65,32 +65,45 @@
 						          'dest' => $_POST['destinataire']));
 									$bool = $req2->fetch();
 									$req2->closeCursor();
-									if($bool){
-										$req=$bdd->prepare('INSERT INTO messagescontact (ID_envoi, Type, message)
-										VALUES (:envoi,:type,:message)');
-										$req->execute(array(
-											'envoi' => $_SESSION['ID'],
-											'type' =>$bdd->quote($_POST['destinataire']),
-											'message' => $bdd->quote($_POST['message'], ENT_QUOTES, 'UTF_8')
-										));
-										$req->closeCursor();
-										echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
+									$token = $_POST['token'];
+									if($_SESSION['token']==$token){
+										if($bool){
+											$req=$bdd->prepare('INSERT INTO messagescontact (ID_envoi, Type, message)
+											VALUES (:envoi,:type,:message)');
+											$req->execute(array(
+												'envoi' => $_SESSION['ID'],
+												'type' =>$bdd->quote($_POST['destinataire']),
+												'message' => $bdd->quote($_POST['message'])
+											));
+											$req->closeCursor();
+											echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
+										}
+										else{
+											echo '<h4 class="m-text26 p-b-36 p-t-15">Destinataire inexistant</h4>';
+										}
 									}
 									else{
-										echo '<h4 class="m-text26 p-b-36 p-t-15">Destinataire inexistant</h4>';
+										echo '<h4 class="m-text26 p-b-36 p-t-15">Un problème de sécurité vient d\'etre detecte dans votre demande, nous nous excuson de l\'inconvenient"</h4>';
 									}
 								}
 
 
 							else{
-								$req=$bdd->prepare('INSERT INTO messagescontact (ID_envoi, message)
-								VALUES (:envoi,:message)');
-								$req->execute(array(
-									'envoi' => $_SESSION['ID'],
-									'message' => $bdd->quote($_POST['message'], ENT_QUOTES, 'UTF_8'),
-								));
-								$req->closeCursor();
-								echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
+
+								$token = $_POST['token'];
+								if($_SESSION['token']==$token){
+									$req=$bdd->prepare('INSERT INTO messagescontact (ID_envoi, message)
+									VALUES (:envoi,:message)');
+									$req->execute(array(
+										'envoi' => $_SESSION['ID'],
+										'message' => $bdd->quote($_POST['message'], ENT_QUOTES, 'UTF_8'),
+									));
+									$req->closeCursor();
+									echo '<h4 class="m-text26 p-b-36 p-t-15">Votre message a été envoyé</h4>';
+								}
+								else{
+									echo '<h4 class="m-text26 p-b-36 p-t-15">Un problème de sécurité vient d\'etre detecte dans votre demande, nous nous excuson de l\'inconvenient"</h4>';
+								}
 							}
 						}
 					}
@@ -156,7 +169,9 @@
 							<form class="leave-comment" action="contact.php" method="post">
 								<h4 class="m-text26 p-b-36 p-t-15">
 									Envoyez nous votre message
-								</h4>';
+								</h4>
+								<input type="hidden" id="colortext" class="form-control input_box" name="token" value="'.$_SESSION['token'].'">
+								<div style="color:red" class="m-text15 p-b-36 p-t-15">';
 
 								if(!isset($_SESSION["loggedin"])){
 
