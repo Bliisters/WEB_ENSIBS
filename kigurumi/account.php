@@ -50,7 +50,7 @@ if(isset($_POST['email-account']) && isset($_POST['password-account']) && $_POST
 			$_SESSION['Nom'] = $donnees['Nom'];
 			$_SESSION['Prenom'] = $donnees['Prenom'];
 			$_SESSION['ID'] = $donnees['ID'];
-			$_SESSION['token'] = rand(5, 999999999);;
+			$_SESSION['token'] = rand(5, 999999999);
 			$req = $bdd->prepare('SELECT ID FROM employees WHERE ID_User = :id AND Type = \'Admin\'');
 			$req->execute(array(
 					'id' => $_SESSION['ID']));
