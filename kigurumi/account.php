@@ -2,13 +2,13 @@
 session_start();
 $redirect = 'account-profile.php';
 if(isset($_GET['location'])){
-	if(preg_match('@^[^/]+\.php(\?[a-zA-Z_]+=[a-zA-Z0-9]+)?$@', $_GET['location'])) {
+	if(preg_match('@^[^/%\\\.]+\.php(\?[a-zA-Z_]+=[a-zA-Z0-9]+)?$@', $_GET['location'])) {
 		$redirect = $_GET['location'];
 	}
 	else {
 		$date = getdate();
-		$log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
-		+ "account.php wrong location: " + $_GET['location'] + "\n";
+		$log = "[" . $date['mday'] . "/" . $date['mon'] . "/" . $date['year'] . " " . $date['hours'] . ":" . $date['minutes'] . ":" . $date['seconds'] . "] "
+		. "account.php wrong location: " . $_GET['location'] . "\n";
 		file_put_contents('logs/access.log', $log, FILE_APPEND);
 	}
 }
@@ -33,8 +33,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 if(isset($_POST['email-account']) && isset($_POST['password-account']) && $_POST['email-account'] != NULL && $_POST['password-account'] != NULL){
 	if(!filter_var($_POST['email-account'], FILTER_VALIDATE_EMAIL)) {
 		$date = getdate();
-		$log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
-		+ "account.php not an email address" + "\n";
+		$log = "[" . $date['mday'] . "/" . $date['mon'] . "/" . $date['year'] . " " . $date['hours'] . ":" . $date['minutes'] . ":" . $date['seconds'] . "] "
+		. "account.php not an email address" . "\n";
 		file_put_contents('logs/access.log', $log, FILE_APPEND);
 		//afficher une erreur ?
 	}

@@ -192,8 +192,8 @@
 						else{
 							if(isset($_GET['type'])) {
 								$date = getdate();
-							  $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
-							  + "product.php wrong type: " + $_GET['type'] + "\n";
+							  $log = "[" . $date['mday'] . "/" . $date['mon'] . "/" . $date['year'] . " " . $date['hours'] . ":" . $date['minutes'] . ":" . $date['seconds'] . "] "
+							  . "product.php wrong type: " . $_GET['type'] . "\n";
 							  file_put_contents('logs/access.log', $log, FILE_APPEND);
 							}
 							if(isset($_GET['search-product'])) {

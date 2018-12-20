@@ -2,8 +2,8 @@
 	session_start();
 	if(!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
 		$date = getdate();
-		$log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
-		+ "cart-confirm.php unauthorized accesss" + "\n";
+		$log = "[" . $date['mday'] . "/" . $date['mon'] . "/" . $date['year'] . " " . $date['hours'] . ":" . $date['minutes'] . ":" . $date['seconds'] . "] "
+		. "cart-confirm.php unauthorized accesss" . "\n";
 		file_put_contents('logs/access.log', $log, FILE_APPEND);
 		header('location: account.php');
 		exit;
