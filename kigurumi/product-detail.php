@@ -194,7 +194,7 @@ if(!isset($_GET['ID']) || !is_numeric($_GET['ID'])) {
 
 		<div class="dropdown-content dis-none p-t-15 p-b-23">
 			<p class="s-text8">
-				<?php echo htmlspecialchars($donnees['Description'], ENT_QUOTES, 'UTF_8'); ?>
+				<?php echo htmlspecialchars($donnees['Description'], ENT_QUOTES, 'UTF-8'); ?>
 			</p>
 		</div>
 	</div>
@@ -255,7 +255,7 @@ if(!isset($_GET['ID']) || !is_numeric($_GET['ID'])) {
 
 					<b><?php echo $donnees2['Titre']; ?></b>
 					<br>
-					<?php echo htmlspecialchars($donnees2['Commentaire'], ENT_QUOTES, 'UTF_8'); ?>
+					<?php echo htmlspecialchars($donnees2['Commentaire'], ENT_QUOTES, 'UTF-8'); ?>
 					<br>
 					<i><?php echo $donnees2['Prenom']; ?></i>
 					<br>
