@@ -196,10 +196,10 @@
 							  . "product.php wrong type: " . $_GET['type'] . "\n";
 							  file_put_contents('logs/access.log', $log, FILE_APPEND);
 							}
-							if(isset($_GET['search-product'])) {
+							if(isset($_GET['search-product']) && $_GET['search-product'] != "") {
 								$date = getdate();
-							  $log = "[" + $date['mday'] + "/" + $date['mon'] + "/" + $date['year'] + " " + $date['hours'] + ":" + $date['minutes'] + ":" + $date['seconds'] + "] "
-							  + "product.php wrong search-product: " + $_GET['search-product'] + "\n";
+							  $log = "[" . $date['mday'] . "/" . $date['mon'] . "/" . $date['year'] . " " . $date['hours'] . ":" . $date['minutes'] . ":" . $date['seconds'] . "] "
+							  . "product.php wrong search-product: " . $_GET['search-product'] . "\n";
 							  file_put_contents('logs/access.log', $log, FILE_APPEND);
 							}
 							$reponse = $bdd->prepare('SELECT * FROM products');
